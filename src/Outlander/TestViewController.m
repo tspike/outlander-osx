@@ -39,10 +39,10 @@
 
 @implementation TestViewController {
     GameContext *_gameContext;
-    ScriptRunner *_scriptRunner;
-    NotifyMessage *_notifier;
+//    ScriptRunner *_scriptRunner;
+//    NotifyMessage *_notifier;
     VitalsViewController *_vitalsViewController;
-    ScriptToolbarViewController *_scriptToolbarViewController;
+//    ScriptToolbarViewController *_scriptToolbarViewController;
     ExpTracker *_expTracker;
     RoundtimeNotifier *_roundtimeNotifier;
     SpelltimeNotifier *_spelltimeNotifier;
@@ -59,7 +59,8 @@
 
     @weakify(self)
     
-    _notifier = [NotifyMessage newInstance];
+//    _notifier = [NotifyMessage newInstance];
+    /*
     _notifier.messageBlock = ^(TextTag *tag){
         @strongify(self)
         [self append:tag to:@"main"];
@@ -75,11 +76,12 @@
         tag.preset = @"scriptecho";
         [self append:tag to:@"main"];
     };
+     */
     
-    _scriptRunner = [ScriptRunner newInstance: _gameContext notifier: _notifier];
+//    _scriptRunner = [ScriptRunner newInstance: _gameContext notifier: _notifier];
     
     _vitalsViewController = [[VitalsViewController alloc] init];
-    _scriptToolbarViewController = [[ScriptToolbarViewController alloc] initWithNibName:@"ScriptToolbarViewController" bundle:[NSBundle mainBundle]];
+//    _scriptToolbarViewController = [[ScriptToolbarViewController alloc] initWithNibName:@"ScriptToolbarViewController" bundle:[NSBundle mainBundle]];
     _windows = [[TSMutableDictionary alloc] initWithName:@"gamewindows"];
     _server = [[AuthenticationServer alloc]init];
     _expTracker = [[ExpTracker alloc] init];
@@ -280,6 +282,7 @@
     _VitalsView.autoresizesSubviews = YES;
     [_vitalsViewController.view setFrameSize:_VitalsView.frame.size];
 
+    /*
     [_scriptToolbarView addSubview:_scriptToolbarViewController.view];
     [_scriptToolbarViewController.view fixTopEdge:YES];
     [_scriptToolbarViewController.view fixRightEdge:YES];
@@ -288,7 +291,7 @@
     [_scriptToolbarViewController.view fixWidth:NO];
     [_scriptToolbarViewController.view fixHeight:NO];
     [_scriptToolbarViewController setContext:_gameContext];
-
+*/
     [self reloadTheme];
    
     [self loadWindows];

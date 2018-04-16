@@ -83,3 +83,77 @@ extension String {
         return nil
     }
 }
+
+
+extension Array {
+    func forEach(doThis: (element: Element) -> Void) {
+        for e in self {
+            doThis(element: e)
+        }
+    }
+    
+    func find(includedElement: Element -> Bool) -> Int? {
+        for (idx, element) in self.enumerate() {
+            if includedElement(element) {
+                return idx
+            }
+        }
+        return nil
+    }
+}
+
+extension String {
+    
+    func toDouble() -> Double? {
+        enum F {
+            static let formatter = NSNumberFormatter()
+        }
+        if let number = F.formatter.numberFromString(self) {
+            return number.doubleValue
+        }
+        return nil
+    }
+    
+    func substringFromIndex(index:Int) -> String {
+        return self.substringFromIndex(self.startIndex.advancedBy(index))
+    }
+    
+    func indexOfCharacter(char: Character) -> Int? {
+        if let idx = self.characters.indexOf(char) {
+            return self.startIndex.distanceTo(idx)
+        }
+        return nil
+    }
+    
+    func splitToCommands() -> [String] {
+        
+        var results:[String] = []
+        
+        let matches = self["((?<!\\\\);)"].matchResults()
+        
+        var lastIndex = 0
+        let length = self.characters.count
+        
+        for match in matches {
+            let matchLength = match.range.location - lastIndex
+            let start = self.startIndex.advancedBy(lastIndex)
+            let end = start.advancedBy(matchLength)
+            var str = self.substringWithRange(start..<end)
+            str = str.stringByReplacingOccurrencesOfString("\\;", withString: ";")
+            results.append(str)
+            
+            lastIndex = match.range.location + match.range.length
+        }
+        
+        if lastIndex < length {
+            let start = self.startIndex.advancedBy(lastIndex)
+            let end = start.advancedBy(length - lastIndex)
+            var str = self.substringWithRange(start ..< end)
+            str = str.stringByReplacingOccurrencesOfString("\\;", withString: ";")
+            results.append(str)
+        }
+        
+        return results
+    }
+}
+

@@ -70,14 +70,6 @@
 		F92A823C1AEB061C005BBD2F /* ChooseProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A82391AEB061C005BBD2F /* ChooseProfileViewController.swift */; };
 		F92A823D1AEB061C005BBD2F /* ChooseProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A823A1AEB061C005BBD2F /* ChooseProfileViewController.xib */; };
 		F92A823E1AEB061C005BBD2F /* ChooseProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A823A1AEB061C005BBD2F /* ChooseProfileViewController.xib */; };
-		F9316D221AD9E1D400880149 /* ScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9316D1F1AD9E1D400880149 /* ScriptContext.swift */; };
-		F9316D231AD9E1D400880149 /* ScriptContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9316D1F1AD9E1D400880149 /* ScriptContext.swift */; };
-		F9316D241AD9E1D400880149 /* OutlanderStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9316D201AD9E1D400880149 /* OutlanderStandard.swift */; };
-		F9316D251AD9E1D400880149 /* OutlanderStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9316D201AD9E1D400880149 /* OutlanderStandard.swift */; };
-		F9316D261AD9E1D400880149 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9316D211AD9E1D400880149 /* Actor.swift */; };
-		F9316D271AD9E1D400880149 /* Actor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9316D211AD9E1D400880149 /* Actor.swift */; };
-		F9316D291AD9E65000880149 /* ScriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9316D281AD9E65000880149 /* ScriptRunner.swift */; };
-		F9316D2A1AD9E65000880149 /* ScriptRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9316D281AD9E65000880149 /* ScriptRunner.swift */; };
 		F93462591AC3DB7700B10ADF /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F93462581AC3DB7700B10ADF /* Layout.m */; };
 		F934625A1AC3DB7700B10ADF /* Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = F93462581AC3DB7700B10ADF /* Layout.m */; };
 		F93A1A40193AEF9F00ED5C2E /* Match.m in Sources */ = {isa = PBXBuildFile; fileRef = F93A1A3F193AEF9F00ED5C2E /* Match.m */; };
@@ -138,8 +130,6 @@
 		F96ECDDD19359ECE00787CB9 /* AliasCommandHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F96ECDDC19359ECE00787CB9 /* AliasCommandHandler.m */; };
 		F96ECDDE19359ECE00787CB9 /* AliasCommandHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = F96ECDDC19359ECE00787CB9 /* AliasCommandHandler.m */; };
 		F970BA071BEE16FE0047F6CC /* OutlanderScriptParserTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = F970BA061BEE16FE0047F6CC /* OutlanderScriptParserTester.swift */; };
-		F970BA091BEE64590047F6CC /* TokenToMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F970BA081BEE64590047F6CC /* TokenToMessage.swift */; };
-		F970BA0A1BEE64600047F6CC /* TokenToMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F970BA081BEE64590047F6CC /* TokenToMessage.swift */; };
 		F971EFD6193880B6008AF6A8 /* GameCommandRelay.m in Sources */ = {isa = PBXBuildFile; fileRef = F971EFD5193880B6008AF6A8 /* GameCommandRelay.m */; };
 		F971EFD7193880B6008AF6A8 /* GameCommandRelay.m in Sources */ = {isa = PBXBuildFile; fileRef = F971EFD5193880B6008AF6A8 /* GameCommandRelay.m */; };
 		F971EFDA1938830D008AF6A8 /* StubCommandRelay.m in Sources */ = {isa = PBXBuildFile; fileRef = F971EFD91938830D008AF6A8 /* StubCommandRelay.m */; };
@@ -342,10 +332,6 @@
 		F9AE6A9918A0001300A11EE9 /* ProgressBarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AE6A9718A0001300A11EE9 /* ProgressBarViewController.xib */; };
 		F9AE6AA018A07EA600A11EE9 /* VitalsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F9AE6A9E18A07EA600A11EE9 /* VitalsViewController.m */; };
 		F9AE6AA118A07EA600A11EE9 /* VitalsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9AE6A9F18A07EA600A11EE9 /* VitalsViewController.xib */; };
-		F9B2C7B11ADCE9A100B7E81A /* ScriptStreamHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2C7B01ADCE9A100B7E81A /* ScriptStreamHandler.swift */; };
-		F9B2C7B21ADCE9A100B7E81A /* ScriptStreamHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2C7B01ADCE9A100B7E81A /* ScriptStreamHandler.swift */; };
-		F9B2C7B41ADDBB2800B7E81A /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2C7B31ADDBB2800B7E81A /* Messages.swift */; };
-		F9B2C7B51ADDBB2800B7E81A /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2C7B31ADDBB2800B7E81A /* Messages.swift */; };
 		F9B2C7B71ADED1B900B7E81A /* ParseCommandHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2C7B61ADED1B900B7E81A /* ParseCommandHandler.swift */; };
 		F9B2C7B81ADED1B900B7E81A /* ParseCommandHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9B2C7B61ADED1B900B7E81A /* ParseCommandHandler.swift */; };
 		F9B3AC61194046E400C081C4 /* LabelToken.m in Sources */ = {isa = PBXBuildFile; fileRef = F9B3AC60194046E400C081C4 /* LabelToken.m */; };
@@ -388,8 +374,6 @@
 		F9BFF56D1E0EFFEE009E5473 /* SubstituteTester.m in Sources */ = {isa = PBXBuildFile; fileRef = F9BFF56C1E0EFFEE009E5473 /* SubstituteTester.m */; };
 		F9C1787D1B12754E00CC7291 /* TestCommandHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1787C1B12754E00CC7291 /* TestCommandHandler.swift */; };
 		F9C1787E1B12754E00CC7291 /* TestCommandHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1787C1B12754E00CC7291 /* TestCommandHandler.swift */; };
-		F9C178811B1398DA00CC7291 /* ScriptToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1787F1B1398DA00CC7291 /* ScriptToolbarViewController.swift */; };
-		F9C178821B1398DA00CC7291 /* ScriptToolbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1787F1B1398DA00CC7291 /* ScriptToolbarViewController.swift */; };
 		F9C178831B1398DA00CC7291 /* ScriptToolbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C178801B1398DA00CC7291 /* ScriptToolbarViewController.xib */; };
 		F9C178841B1398DA00CC7291 /* ScriptToolbarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C178801B1398DA00CC7291 /* ScriptToolbarViewController.xib */; };
 		F9C178861B140F2A00CC7291 /* FlippedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C178851B140F2A00CC7291 /* FlippedView.swift */; };
@@ -431,8 +415,6 @@
 		F9E307731AE9F0A6003018BD /* ExpUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E307721AE9F0A6003018BD /* ExpUpdateHandler.swift */; };
 		F9E307741AE9F0A6003018BD /* ExpUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E307721AE9F0A6003018BD /* ExpUpdateHandler.swift */; };
 		F9E307771AE9F3C2003018BD /* ExpUpdateHandlerTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E307751AE9F3C2003018BD /* ExpUpdateHandlerTester.swift */; };
-		F9E4DD691B0060430094DD08 /* IgnoreCaseKeywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E4DD681B0060430094DD08 /* IgnoreCaseKeywords.swift */; };
-		F9E4DD6A1B0060430094DD08 /* IgnoreCaseKeywords.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E4DD681B0060430094DD08 /* IgnoreCaseKeywords.swift */; };
 		F9E515D91E04C37200C53DAD /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9F3D85A1957E54A005B9D68 /* Carbon.framework */; };
 		F9E86BCE1AEC78700065E04A /* EventAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E86BCD1AEC78700065E04A /* EventAggregator.swift */; };
 		F9E86BCF1AEC78700065E04A /* EventAggregator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9E86BCD1AEC78700065E04A /* EventAggregator.swift */; };
@@ -1534,7 +1516,7 @@
 				ORGANIZATIONNAME = "Joe McBride";
 				TargetAttributes = {
 					F9CF92661890832800449548 = {
-						DevelopmentTeam = 9TZ225FMST;
+						DevelopmentTeam = R3E6G552N7;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
@@ -1650,7 +1632,6 @@
 				F9E307731AE9F0A6003018BD /* ExpUpdateHandler.swift in Sources */,
 				F90BCF8C1AE174BC00FBD7C4 /* TDPUpdateHandler.swift in Sources */,
 				F97A5CC41896C21600E2C318 /* TextViewController.m in Sources */,
-				F9316D241AD9E1D400880149 /* OutlanderStandard.swift in Sources */,
 				F9F4469D1ABD8478003ECAD2 /* RoomObjsTags.m in Sources */,
 				F97A5C9E1895C10100E2C318 /* CharacterViewModel.m in Sources */,
 				F96ECDBE1934585400787CB9 /* ScriptCommandHandler.m in Sources */,
@@ -1658,15 +1639,12 @@
 				F97A5C7B1893808F00E2C318 /* HTMLNode.m in Sources */,
 				F9269A9C1AD7A5D900E35690 /* MapLabel.swift in Sources */,
 				F97CD5881ACD27D3007E5804 /* MapPosition.swift in Sources */,
-				F9C178811B1398DA00CC7291 /* ScriptToolbarViewController.swift in Sources */,
 				F91031541B3D0F710039BDF0 /* GagsLoader.swift in Sources */,
 				F97CD5851ACD27D3007E5804 /* MapArc.swift in Sources */,
 				F9AE6AA018A07EA600A11EE9 /* VitalsViewController.m in Sources */,
 				F9A345331913398800920F0E /* WindowDataService.m in Sources */,
-				F9B2C7B11ADCE9A100B7E81A /* ScriptStreamHandler.swift in Sources */,
 				F9A34550191C59D500920F0E /* ProfileLoader.m in Sources */,
 				F97A5CA21895E06400E2C318 /* MyView.m in Sources */,
-				F9316D261AD9E1D400880149 /* Actor.swift in Sources */,
 				F96ECDB619343F5B00787CB9 /* ScriptLoader.m in Sources */,
 				F94A3FC91948AE0500D6B35D /* GosubToken.m in Sources */,
 				F9B6CD8C1E7903DA0085195F /* ClassesLoader.swift in Sources */,
@@ -1688,7 +1666,6 @@
 				F9A2C1741B22AE41005B9B6C /* TriggersLoader.swift in Sources */,
 				F955389F1B27EFB5007DCCD4 /* CharacterStatusViewController.swift in Sources */,
 				F9AE6A88189E218F00A11EE9 /* MMScroller.m in Sources */,
-				F9316D291AD9E65000880149 /* ScriptRunner.swift in Sources */,
 				F9E1C8B01AE2FD9200458029 /* BeepCommandHandler.swift in Sources */,
 				F97A5C8A1893AFDF00E2C318 /* TextTag.m in Sources */,
 				F989E205192C2E6200562E32 /* Highlight.m in Sources */,
@@ -1754,7 +1731,6 @@
 				F97A5C9A18957A5D00E2C318 /* TSMutableDictionary.m in Sources */,
 				F9F3D83A1956721C005B9D68 /* MacrosViewController.m in Sources */,
 				F9B6CD801E779CD50085195F /* VitalsLoader.swift in Sources */,
-				F9316D221AD9E1D400880149 /* ScriptContext.swift in Sources */,
 				F90CEC181AD037CE00204243 /* MapView.swift in Sources */,
 				F9A8DD291AC1FDC5009A2F67 /* NSTextView+Categories.m in Sources */,
 				F9ACB138192ECD1A006D3548 /* GameCommandProcessor.m in Sources */,
@@ -1763,7 +1739,6 @@
 				F9B9BFE51ABD5D8500CB44B6 /* StormFrontTokenizer.swift in Sources */,
 				F97A5C501890DFB400E2C318 /* TestViewController.m in Sources */,
 				F97A5C631891F2C400E2C318 /* AuthenticationServer.m in Sources */,
-				F970BA091BEE64590047F6CC /* TokenToMessage.swift in Sources */,
 				F90CEC211AD4322600204243 /* GameContext.swift in Sources */,
 				F98782D71942649600D76231 /* LRToken.m in Sources */,
 				F98782FB1946873500D76231 /* WaitForToken.m in Sources */,
@@ -1787,7 +1762,6 @@
 				F9B9BFEB1ABD5DBE00CB44B6 /* SwiftRegex.swift in Sources */,
 				F9F3D82C1953364F005B9D68 /* Macro.m in Sources */,
 				F98782BF1942128F00D76231 /* IdToken.m in Sources */,
-				F9E4DD691B0060430094DD08 /* IgnoreCaseKeywords.swift in Sources */,
 				F97CD5861ACD27D3007E5804 /* MapLoader.swift in Sources */,
 				F959D3E11AC8FB6300B2A659 /* AliasesViewController.swift in Sources */,
 				F9A74F1119305D14008F410A /* VariablesLoader.m in Sources */,
@@ -1816,7 +1790,6 @@
 				F9D6A6EF1ACBC8AB00FEA665 /* HighlightsViewController.swift in Sources */,
 				F92A823B1AEB061C005BBD2F /* ChooseProfileViewController.swift in Sources */,
 				F9B2C7B71ADED1B900B7E81A /* ParseCommandHandler.swift in Sources */,
-				F9B2C7B41ADDBB2800B7E81A /* Messages.swift in Sources */,
 				F97A5C671892388D00E2C318 /* GameServer.m in Sources */,
 				F96ECDD919356A6C00787CB9 /* OLMutableArray.m in Sources */,
 				F91A39A01949FF31006144F8 /* DebugLevelToken.m in Sources */,
@@ -1860,7 +1833,6 @@
 				F9A74F1219305D14008F410A /* VariablesLoader.m in Sources */,
 				F91A39AD194BD706006144F8 /* OLPauseCondition.m in Sources */,
 				F94A3FCE1948AE6700D6B35D /* ActionToken.m in Sources */,
-				F970BA0A1BEE64600047F6CC /* TokenToMessage.swift in Sources */,
 				F90BCF8D1AE174BC00FBD7C4 /* TDPUpdateHandler.swift in Sources */,
 				F97A5CA71895E2C400E2C318 /* MyNSTextField.m in Sources */,
 				F91A39A5194B4F5F006144F8 /* PlayerStatusIndicator.m in Sources */,
@@ -1880,7 +1852,6 @@
 				F97A5CBC1895EEF500E2C318 /* NSTextField+Categories.m in Sources */,
 				F98782C01942128F00D76231 /* IdToken.m in Sources */,
 				F96ECDCC1934E6EB00787CB9 /* VarCommandHandler.m in Sources */,
-				F9E4DD6A1B0060430094DD08 /* IgnoreCaseKeywords.swift in Sources */,
 				F90CEC151ACEEED000204243 /* Pathfinder.swift in Sources */,
 				F9B6CD841E779F9C0085195F /* JsonSerializer.swift in Sources */,
 				F90CEC101ACEEEBB00204243 /* MapZone.swift in Sources */,
@@ -1894,12 +1865,10 @@
 				F9CB31111903238B004587A5 /* SkillExp.m in Sources */,
 				F92A4FBB192A56BC006C71F9 /* MyNSTextFieldTester.m in Sources */,
 				F9D6A6F51ACBE1A700FEA665 /* NSColorExtensions.swift in Sources */,
-				F9316D251AD9E1D400880149 /* OutlanderStandard.swift in Sources */,
 				F934625A1AC3DB7700B10ADF /* Layout.m in Sources */,
 				F971EFDD1938D7D0008AF6A8 /* StubInfoStream.m in Sources */,
 				F94A3FCA1948AE0500D6B35D /* GosubToken.m in Sources */,
 				F9B6CD8A1E78C2F90085195F /* ClassCommandHandler.swift in Sources */,
-				F9B2C7B51ADDBB2800B7E81A /* Messages.swift in Sources */,
 				F971EFDA1938830D008AF6A8 /* StubCommandRelay.m in Sources */,
 				F9B9BFE31ABD5CC300CB44B6 /* GameServer2.swift in Sources */,
 				F96ECDD6193565F100787CB9 /* HighlightCommandHandler.m in Sources */,
@@ -1923,10 +1892,8 @@
 				F94923911B07C7280051F7F5 /* HighlightCellView.swift in Sources */,
 				F98782FC1946873500D76231 /* WaitForToken.m in Sources */,
 				F95538A61B2809AB007DCCD4 /* TriggersViewController.swift in Sources */,
-				F9316D231AD9E1D400880149 /* ScriptContext.swift in Sources */,
 				F9ACB139192ECD1A006D3548 /* GameCommandProcessor.m in Sources */,
 				F92A82381AEAE732005BBD2F /* ScriptTester.swift in Sources */,
-				F9B2C7B21ADCE9A100B7E81A /* ScriptStreamHandler.swift in Sources */,
 				F91A39B1194BDE83006144F8 /* ExecuteBlock.m in Sources */,
 				F9BF6AF3193A914B0075A12F /* GameEventRelay.m in Sources */,
 				F9D6A6F01ACBC8AB00FEA665 /* HighlightsViewController.swift in Sources */,
@@ -1937,7 +1904,6 @@
 				F9E1C8B41AE35A8000458029 /* RandomNumbers.swift in Sources */,
 				F9F3D8351953C384005B9D68 /* MacroHandler.m in Sources */,
 				F9F4469E1ABD8478003ECAD2 /* RoomObjsTags.m in Sources */,
-				F9316D2A1AD9E65000880149 /* ScriptRunner.swift in Sources */,
 				F9818D5E1908D8FC00137896 /* SkillExpTester.m in Sources */,
 				F9D2B1831E20473B00733E24 /* HighlightsLoader.m in Sources */,
 				F9A79E581927FDA0000AF892 /* Roundtime.m in Sources */,
@@ -1965,7 +1931,6 @@
 				F95538A01B27EFB5007DCCD4 /* CharacterStatusViewController.swift in Sources */,
 				F9FFE7851E7F801300FD33B8 /* AppConfigLoader.swift in Sources */,
 				F959D3D21AC6897000B2A659 /* GameViewController.swift in Sources */,
-				F9316D271AD9E1D400880149 /* Actor.swift in Sources */,
 				F9B3AC721940C5CE00C081C4 /* PauseToken.m in Sources */,
 				F91031521B3D0F140039BDF0 /* Gag.swift in Sources */,
 				F9AE6A89189E218F00A11EE9 /* MMScroller.m in Sources */,
@@ -1982,7 +1947,6 @@
 				F98D4C291CB1A7DF00E81E70 /* Substitute.swift in Sources */,
 				F971EFD7193880B6008AF6A8 /* GameCommandRelay.m in Sources */,
 				F9B9BFEF1ABD5DD700CB44B6 /* StringExtensions.swift in Sources */,
-				F9C178821B1398DA00CC7291 /* ScriptToolbarViewController.swift in Sources */,
 				F90CEC121ACEEEC100204243 /* MapLoader.swift in Sources */,
 				F9DF14921AF8589C000A05FB /* EchoCommandHandlerTester.swift in Sources */,
 				F9E1C8B11AE2FD9200458029 /* BeepCommandHandler.swift in Sources */,
@@ -2172,7 +2136,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 9TZ225FMST;
+				DEVELOPMENT_TEAM = R3E6G552N7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -2223,7 +2187,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = 9TZ225FMST;
+				DEVELOPMENT_TEAM = R3E6G552N7;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

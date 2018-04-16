@@ -22,7 +22,7 @@
     RACSubject *_mainSubject;
     StormFrontTokenizer *_tokenizer;
     StormFrontTagStreamer *_tagStreamer;
-    ScriptStreamHandler *_scriptStreamHandler;
+//    ScriptStreamHandler *_scriptStreamHandler;
     RoomChangeHandler *_roomChangeHandler;
     TDPUpdateHandler *_tdpUpdateHandler;
     ExpUpdateHandler *_expUpdateHandler;
@@ -44,7 +44,7 @@
     _gameParser = [[GameParser alloc] initWithContext:context];
     _tokenizer = [StormFrontTokenizer newInstance];
     _tagStreamer = [StormFrontTagStreamer newInstance];
-    _scriptStreamHandler = [ScriptStreamHandler newInstance];
+//    _scriptStreamHandler = [ScriptStreamHandler newInstance];
     _roomChangeHandler = [RoomChangeHandler newInstance:_commandRelay];
     _tdpUpdateHandler = [TDPUpdateHandler newInstance];
     _expUpdateHandler = [ExpUpdateHandler newInstance];
@@ -184,7 +184,7 @@
          [_roomChangeHandler handle:nodes text:rawText context:_gameContext];
          [_tdpUpdateHandler handle:nodes text:rawText context:_gameContext];
          [_expUpdateHandler handle:nodes text:rawText context:_gameContext];
-         [_scriptStreamHandler handle:nodes text:rawText context:_gameContext];
+//         [_scriptStreamHandler handle:nodes text:rawText context:_gameContext];
          
      } completed:^{
          [self unsubscribe];

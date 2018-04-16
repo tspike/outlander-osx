@@ -191,7 +191,7 @@ public class ScriptContext {
         let trimmed = label.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).lowercaseString
         
         while let token = cur.next() {
-            if let labelToken = token as? LabelToken where labelToken.characters.lowercaseString == trimmed {
+            if let labelToken = token as? LabelToken, labelToken.characters.lowercaseString == trimmed {
                 found = true
                 
                 if params.count > 0 || isGosub {
