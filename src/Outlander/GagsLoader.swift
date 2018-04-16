@@ -11,7 +11,7 @@ import Foundation
 @objc
 class GagsLoader : NSObject {
     
-    class func newInstance(context:GameContext, fileSystem:FileSystem) -> GagsLoader {
+    class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> GagsLoader {
         return GagsLoader(context: context, fileSystem: fileSystem)
     }
     
@@ -29,7 +29,7 @@ class GagsLoader : NSObject {
         var data:String?
         
         do {
-            data = try self.fileSystem.stringWithContentsOfFile(configFile, encoding: NSUTF8StringEncoding)
+            data = try self.fileSystem.string(withContentsOfFile: configFile, encoding: String.Encoding.utf8.rawValue)
         } catch {
             return
         }
@@ -42,7 +42,7 @@ class GagsLoader : NSObject {
         
         let pattern = "^#gag \\{(.*?)\\}(?:\\s\\{(.*?)\\})?$"
         
-        let target = SwiftRegex(target: data!, pattern: pattern, options: [NSRegularExpressionOptions.AnchorsMatchLines, NSRegularExpressionOptions.CaseInsensitive])
+        let target = SwiftRegex(target: data! as NSString, pattern: pattern, options: [NSRegularExpression.Options.anchorsMatchLines, NSRegularExpression.Options.caseInsensitive])
         
         let groups = target.allGroups()
         
@@ -57,7 +57,7 @@ class GagsLoader : NSObject {
                 
                 let item = Gag(sub, className)
                 
-                self.context.gags.addObject(item)
+                self.context.gags.add(item)
             }
         }
     }
@@ -67,7 +67,7 @@ class GagsLoader : NSObject {
         
         var gags = ""
         
-        self.context.gags.enumerateObjectsUsingBlock({ object, index, stop in
+        self.context.gags.enumerateObjects({ object, index, stop in
             let gag = object as! Gag
             let pattern = gag.pattern != nil ? gag.pattern! : ""
             let className = gag.patternClass != nil ? gag.patternClass! : ""

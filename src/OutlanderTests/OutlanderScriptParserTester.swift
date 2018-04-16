@@ -16,7 +16,7 @@ struct MessageTestContext<T: Message> {
 
 class OutlanderScriptParserTester : QuickSpec {
     
-    func buildMessage<T: Message>(script:String, _ globalVars: (()->[String:String])? = nil) -> MessageTestContext<T> {
+    func buildMessage<T: Message>(_ script:String, _ globalVars: (()->[String:String])? = nil) -> MessageTestContext<T> {
         
         let parser = OutlanderScriptParser()
         let toMessage = TokenToMessage()

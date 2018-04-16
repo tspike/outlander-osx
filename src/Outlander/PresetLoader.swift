@@ -11,7 +11,7 @@ import Foundation
 @objc
 class PresetLoader : NSObject {
 
-    class func newInstance(context:GameContext, fileSystem:FileSystem) -> PresetLoader {
+    class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> PresetLoader {
         return PresetLoader(context: context, fileSystem: fileSystem)
     }
 
@@ -34,7 +34,7 @@ class PresetLoader : NSObject {
         var data:String?
 
         do {
-            data = try self.fileSystem.stringWithContentsOfFile(configFile, encoding: NSUTF8StringEncoding)
+            data = try self.fileSystem.string(withContentsOfFile: configFile, encoding: String.Encoding.utf8.rawValue)
         } catch {
             return
         }
@@ -47,7 +47,7 @@ class PresetLoader : NSObject {
 
         let pattern = "^#preset \\{(.*?)\\} \\{(.*?)\\}(?:\\s\\{(.*?)\\})?$"
 
-        let target = SwiftRegex(target: data!, pattern: pattern, options: [NSRegularExpressionOptions.AnchorsMatchLines, NSRegularExpressionOptions.CaseInsensitive])
+        let target = SwiftRegex(target: data! as NSString, pattern: pattern, options: [NSRegularExpression.Options.anchorsMatchLines, NSRegularExpression.Options.caseInsensitive])
 
         let groups = target.allGroups()
 
@@ -62,7 +62,7 @@ class PresetLoader : NSObject {
                     className = group[3]
                 }
 
-                var colors = color.componentsSeparatedByString(",")
+                var colors = color.components(separatedBy: ",")
 
                 if(colors.count > 1) {
                     color = colors[0]
@@ -82,7 +82,7 @@ class PresetLoader : NSObject {
 
         var presets = ""
 
-        let sorted = context.presets.sort { $0.0 < $1.0 }
+        let sorted = context.presets.sorted { $0.0 < $1.0 }
 
         for (preset) in sorted {
             let name = preset.1.name
@@ -123,7 +123,7 @@ class PresetLoader : NSObject {
         self.add("whisper", "#99FFFF")
     }
 
-    func add(name:String, _ color:String, _ backgroundColor:String? = nil) {
+    func add(_ name:String, _ color:String, _ backgroundColor:String? = nil) {
         let preset = ColorPreset(name, color, backgroundColor ?? "", "")
         self.context.presets[name] = preset
     }

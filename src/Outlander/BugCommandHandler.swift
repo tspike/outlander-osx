@@ -15,12 +15,12 @@ class BugCommandHandler : NSObject, CommandHandler {
         return BugCommandHandler()
     }
 
-    func canHandle(command: String) -> Bool {
-        return command.lowercaseString.hasPrefix("#bug")
+    func canHandle(_ command: String) -> Bool {
+        return command.lowercased().hasPrefix("#bug")
     }
 
-    func handle(command: String, withContext: GameContext) {
-        let url = NSURL(string: "https://github.com/joemcbride/outlander-osx/issues/new")
-        NSWorkspace.sharedWorkspace().openURL(url!)
+    func handle(_ command: String, with withContext: GameContext) {
+        let url = URL(string: "https://github.com/joemcbride/outlander-osx/issues/new")
+        NSWorkspace.shared().open(url!)
     }
 }

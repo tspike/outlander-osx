@@ -11,7 +11,7 @@ import Foundation
 @objc
 class VitalsLoader : NSObject {
     
-    class func newInstance(context:GameContext, fileSystem:FileSystem) -> VitalsLoader {
+    class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> VitalsLoader {
         return VitalsLoader(context: context, fileSystem: fileSystem)
     }
     
@@ -34,7 +34,7 @@ class VitalsLoader : NSObject {
         var json:String?
 
         do {
-            json = try self.fileSystem.stringWithContentsOfFile(configFile, encoding: NSUTF8StringEncoding)
+            json = try self.fileSystem.string(withContentsOfFile: configFile, encoding: String.Encoding.utf8.rawValue)
         } catch {
             return
         }
@@ -44,7 +44,7 @@ class VitalsLoader : NSObject {
         }
 
         do {
-            let dict = try JSONSerializer.toDictionary(json!)
+            let dict = try JSONSerializer.toDictionary(jsonString: json!)
 
             context.vitalsSettings.healthColor = dict.stringValue("healthColor", defaultVal: "#cc0000")
             context.vitalsSettings.healthTextColor = dict.stringValue("healthTextColor", defaultVal: "#f5f5f5")
@@ -69,14 +69,14 @@ class VitalsLoader : NSObject {
     func save() {
         let configFile = self.context.pathProvider.profileFolder().stringByAppendingPathComponent("vitals.cfg")
 
-        let json = JSONSerializer.toJson(context.vitalsSettings, prettify: true)
+        let json = JSONSerializer.toJson(object: context.vitalsSettings, prettify: true)
 
         self.fileSystem.write(json, toFile: configFile)
     }
 }
 
 extension NSDictionary {
-    func stringValue(key:String, defaultVal:String = "") -> String {
+    func stringValue(_ key:String, defaultVal:String = "") -> String {
 
         if let value = self[key] as? String {
             return value
@@ -85,7 +85,7 @@ extension NSDictionary {
         return defaultVal
     }
 
-    func boolValue(key:String, defaultVal:Bool = false) -> Bool {
+    func boolValue(_ key:String, defaultVal:Bool = false) -> Bool {
 
         if let value = self[key] as? String {
             return value.toBool() ?? defaultVal

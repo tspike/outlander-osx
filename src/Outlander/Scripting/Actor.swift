@@ -23,7 +23,7 @@ public class NotifyMessage : NSObject, INotifyMessage {
         return NotifyMessage()
     }
     
-    var messageBlock: ((message:TextTag) -> Void)?
+    var messageBlock: ((_ message:TextTag) -> Void)?
     var commandBlock: ((command:CommandContext) -> Void)?
     var echoBlock: ((echo:String) -> Void)?
     

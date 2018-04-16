@@ -11,7 +11,6 @@
 		F90BCF8D1AE174BC00FBD7C4 /* TDPUpdateHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BCF8B1AE174BC00FBD7C4 /* TDPUpdateHandler.swift */; };
 		F90CEC101ACEEEBB00204243 /* MapZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5821ACD27D3007E5804 /* MapZone.swift */; };
 		F90CEC111ACEEEBF00204243 /* MapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5801ACD27D3007E5804 /* MapNode.swift */; };
-		F90CEC121ACEEEC100204243 /* MapLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD57F1ACD27D3007E5804 /* MapLoader.swift */; };
 		F90CEC131ACEEEC300204243 /* MapArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD57E1ACD27D3007E5804 /* MapArc.swift */; };
 		F90CEC141ACEEECA00204243 /* MapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5811ACD27D3007E5804 /* MapPosition.swift */; };
 		F90CEC151ACEEED000204243 /* Pathfinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5831ACD27D3007E5804 /* Pathfinder.swift */; };
@@ -138,7 +137,6 @@
 		F97217A71DDEBE6100E8FC4E /* NSArray+PEGKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F97217A61DDEBE6100E8FC4E /* NSArray+PEGKitAdditions.m */; };
 		F97217A81DDEBE6100E8FC4E /* NSArray+PEGKitAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F97217A61DDEBE6100E8FC4E /* NSArray+PEGKitAdditions.m */; };
 		F97217B21DDF831B00E8FC4E /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97217AA1DDF831B00E8FC4E /* CocoaAsyncSocket.framework */; };
-		F97217B31DDF831B00E8FC4E /* GlimpseXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97217AB1DDF831B00E8FC4E /* GlimpseXML.framework */; };
 		F97217B41DDF831B00E8FC4E /* GlimpseXML.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97217AB1DDF831B00E8FC4E /* GlimpseXML.framework */; };
 		F97217B51DDF831B00E8FC4E /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97217AC1DDF831B00E8FC4E /* Mantle.framework */; };
 		F97217B61DDF831B00E8FC4E /* Mantle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97217AC1DDF831B00E8FC4E /* Mantle.framework */; };
@@ -151,7 +149,6 @@
 		F97217C21DDF833700E8FC4E /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97217C01DDF833700E8FC4E /* Quick.framework */; };
 		F97217C31DDF837700E8FC4E /* CocoaAsyncSocket.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F97217AA1DDF831B00E8FC4E /* CocoaAsyncSocket.framework */; };
 		F97217C41DDF837700E8FC4E /* CocoaAsyncSocket.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = F97217AA1DDF831B00E8FC4E /* CocoaAsyncSocket.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F97217C61DDF837700E8FC4E /* GlimpseXML.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = F97217AB1DDF831B00E8FC4E /* GlimpseXML.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F97217C81DDF837700E8FC4E /* Mantle.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = F97217AC1DDF831B00E8FC4E /* Mantle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F97217CA1DDF837700E8FC4E /* MASShortcut.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = F97217AD1DDF831B00E8FC4E /* MASShortcut.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F97217CC1DDF837700E8FC4E /* PEGKit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = F97217AE1DDF831B00E8FC4E /* PEGKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -213,7 +210,6 @@
 		F97A5CC61896C21600E2C318 /* TextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97A5CC31896C21600E2C318 /* TextViewController.xib */; };
 		F97A5CC71896C21600E2C318 /* TextViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97A5CC31896C21600E2C318 /* TextViewController.xib */; };
 		F97CD5851ACD27D3007E5804 /* MapArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD57E1ACD27D3007E5804 /* MapArc.swift */; };
-		F97CD5861ACD27D3007E5804 /* MapLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD57F1ACD27D3007E5804 /* MapLoader.swift */; };
 		F97CD5871ACD27D3007E5804 /* MapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5801ACD27D3007E5804 /* MapNode.swift */; };
 		F97CD5881ACD27D3007E5804 /* MapPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5811ACD27D3007E5804 /* MapPosition.swift */; };
 		F97CD5891ACD27D3007E5804 /* MapZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5821ACD27D3007E5804 /* MapZone.swift */; };
@@ -221,8 +217,6 @@
 		F97CD58B1ACD27D3007E5804 /* TreeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5841ACD27D3007E5804 /* TreeNode.swift */; };
 		F97CD58D1ACD29A4007E5804 /* MapperCommandHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD58C1ACD29A4007E5804 /* MapperCommandHandler.swift */; };
 		F97CD58E1ACD29A4007E5804 /* MapperCommandHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD58C1ACD29A4007E5804 /* MapperCommandHandler.swift */; };
-		F97CD5911ACD9813007E5804 /* AutoMapperWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD58F1ACD9813007E5804 /* AutoMapperWindowController.swift */; };
-		F97CD5921ACD9813007E5804 /* AutoMapperWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD58F1ACD9813007E5804 /* AutoMapperWindowController.swift */; };
 		F97CD5931ACD9813007E5804 /* AutoMapperWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97CD5901ACD9813007E5804 /* AutoMapperWindowController.xib */; };
 		F97CD5941ACD9813007E5804 /* AutoMapperWindowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F97CD5901ACD9813007E5804 /* AutoMapperWindowController.xib */; };
 		F97CD5961ACDC814007E5804 /* Threading.swift in Sources */ = {isa = PBXBuildFile; fileRef = F97CD5951ACDC814007E5804 /* Threading.swift */; };
@@ -387,8 +381,6 @@
 		F9CB311419032EDE004587A5 /* LearningRate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB311319032EDE004587A5 /* LearningRate.m */; };
 		F9CB311519032EDE004587A5 /* LearningRate.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CB311319032EDE004587A5 /* LearningRate.m */; };
 		F9CC818C1DDFDEB700ACE72E /* OysterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CC818A1DDFDEB700ACE72E /* OysterKit.framework */; };
-		F9CC818D1DDFDECF00ACE72E /* OysterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CC818A1DDFDEB700ACE72E /* OysterKit.framework */; };
-		F9CC818E1DDFDECF00ACE72E /* OysterKit.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = F9CC818A1DDFDEB700ACE72E /* OysterKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F9CF926B1890832800449548 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F9CF926A1890832800449548 /* Cocoa.framework */; };
 		F9CF92751890832800449548 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F9CF92731890832800449548 /* InfoPlist.strings */; };
 		F9CF92771890832800449548 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F9CF92761890832800449548 /* main.m */; };
@@ -463,8 +455,6 @@
 				F97217CE1DDF837700E8FC4E /* ReactiveCocoa.framework in Copy Files */,
 				F97217C81DDF837700E8FC4E /* Mantle.framework in Copy Files */,
 				F97217D01DDF837700E8FC4E /* Squirrel.framework in Copy Files */,
-				F97217C61DDF837700E8FC4E /* GlimpseXML.framework in Copy Files */,
-				F9CC818E1DDFDECF00ACE72E /* OysterKit.framework in Copy Files */,
 				F97217801DDE7EE600E8FC4E /* (null) in Copy Files */,
 			);
 			name = "Copy Files";
@@ -869,10 +859,8 @@
 			files = (
 				F9E515D91E04C37200C53DAD /* Carbon.framework in Frameworks */,
 				F97217D11DDF83CD00E8FC4E /* PEGKit.framework in Frameworks */,
-				F9CC818D1DDFDECF00ACE72E /* OysterKit.framework in Frameworks */,
 				F97217C31DDF837700E8FC4E /* CocoaAsyncSocket.framework in Frameworks */,
 				F97217B51DDF831B00E8FC4E /* Mantle.framework in Frameworks */,
-				F97217B31DDF831B00E8FC4E /* GlimpseXML.framework in Frameworks */,
 				F97217B71DDF831B00E8FC4E /* MASShortcut.framework in Frameworks */,
 				F97217CD1DDF837700E8FC4E /* ReactiveCocoa.framework in Frameworks */,
 				F910E4A11D76B8A5000A7A8F /* libxml2.tbd in Frameworks */,
@@ -1517,11 +1505,11 @@
 				TargetAttributes = {
 					F9CF92661890832800449548 = {
 						DevelopmentTeam = R3E6G552N7;
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					F9CF92871890832800449548 = {
-						LastSwiftMigration = 0810;
+						LastSwiftMigration = 0820;
 						TestTargetID = F9CF92661890832800449548;
 					};
 				};
@@ -1762,7 +1750,6 @@
 				F9B9BFEB1ABD5DBE00CB44B6 /* SwiftRegex.swift in Sources */,
 				F9F3D82C1953364F005B9D68 /* Macro.m in Sources */,
 				F98782BF1942128F00D76231 /* IdToken.m in Sources */,
-				F97CD5861ACD27D3007E5804 /* MapLoader.swift in Sources */,
 				F959D3E11AC8FB6300B2A659 /* AliasesViewController.swift in Sources */,
 				F9A74F1119305D14008F410A /* VariablesLoader.m in Sources */,
 				F9B3AC6919405BD700C081C4 /* Atom.m in Sources */,
@@ -1794,7 +1781,6 @@
 				F96ECDD919356A6C00787CB9 /* OLMutableArray.m in Sources */,
 				F91A39A01949FF31006144F8 /* DebugLevelToken.m in Sources */,
 				F9C1787D1B12754E00CC7291 /* TestCommandHandler.swift in Sources */,
-				F97CD5911ACD9813007E5804 /* AutoMapperWindowController.swift in Sources */,
 				F97CD58B1ACD27D3007E5804 /* TreeNode.swift in Sources */,
 				F9B9BFE11ABD558F00CB44B6 /* GameServer2.swift in Sources */,
 				F91A39AC194BD706006144F8 /* OLPauseCondition.m in Sources */,
@@ -1947,7 +1933,6 @@
 				F98D4C291CB1A7DF00E81E70 /* Substitute.swift in Sources */,
 				F971EFD7193880B6008AF6A8 /* GameCommandRelay.m in Sources */,
 				F9B9BFEF1ABD5DD700CB44B6 /* StringExtensions.swift in Sources */,
-				F90CEC121ACEEEC100204243 /* MapLoader.swift in Sources */,
 				F9DF14921AF8589C000A05FB /* EchoCommandHandlerTester.swift in Sources */,
 				F9E1C8B11AE2FD9200458029 /* BeepCommandHandler.swift in Sources */,
 				F959D3D61AC7264300B2A659 /* MacroTester.m in Sources */,
@@ -1960,7 +1945,6 @@
 				F9A8DD111AC14AA7009A2F67 /* AttributesTokenizer.swift in Sources */,
 				F9818D61190D75E800137896 /* TextViewControllerTester.m in Sources */,
 				F970BA071BEE16FE0047F6CC /* OutlanderScriptParserTester.swift in Sources */,
-				F97CD5921ACD9813007E5804 /* AutoMapperWindowController.swift in Sources */,
 				F9A79E541927F7D6000AF892 /* RoundtimeNotifier.m in Sources */,
 				F98D4C261CB1A73300E81E70 /* SubstituteLoader.swift in Sources */,
 				F98782F81942AB6200D76231 /* RegexToken.m in Sources */,
@@ -2172,7 +2156,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Outlander/Outlander-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2223,7 +2207,7 @@
 				STRIP_INSTALLED_PRODUCT = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Outlander/Outlander-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -2268,7 +2252,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Outlander/OutlanderTests-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Outlander.app/Contents/MacOS/Outlander";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -2309,7 +2293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "mcbride.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Outlander/OutlanderTests-Bridging-Header.h";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Outlander.app/Contents/MacOS/Outlander";
 				WRAPPER_EXTENSION = xctest;
 			};

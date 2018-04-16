@@ -8,18 +8,18 @@
 
 import Foundation
 
-public struct RandomNumberGenerator: SequenceType {
-    let range: Range<Int>
+public struct RandomNumberGenerator: Sequence {
+    let range: CountableRange<Int>
     let count: Int
     
-    public init(range: Range<Int>, count: Int) {
+    public init(range: CountableRange<Int>, count: Int) {
         self.range = range
         self.count = count
     }
     
-    public func generate() -> AnyGenerator<Int> {
+    public func makeIterator() -> AnyIterator<Int> {
         var i = 0
-        return AnyGenerator<Int> {
+        return AnyIterator<Int> {
             var result:Int?
             if i == self.count {
                 result = randomNumberFrom(self.range)
@@ -30,10 +30,10 @@ public struct RandomNumberGenerator: SequenceType {
     }
 }
 
-public func randomNumberFrom(from: Range<Int>) -> Int {
-    return from.startIndex + Int(arc4random_uniform(UInt32(from.endIndex - from.startIndex)))
+public func randomNumberFrom(_ from: CountableRange<Int>) -> Int {
+    return from.lowerBound + Int(arc4random_uniform(UInt32(from.upperBound - from.lowerBound)))
 }
 
-public func randomNumbersFrom(from: Range<Int>, count: Int) -> RandomNumberGenerator {
+public func randomNumbersFrom(_ from: CountableRange<Int>, count: Int) -> RandomNumberGenerator {
     return RandomNumberGenerator(range: from, count: count)
 }

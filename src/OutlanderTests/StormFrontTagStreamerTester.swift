@@ -568,7 +568,7 @@ class StormFrontTagStreamerTester: QuickSpec {
         })
     }
 
-    func streamData(data:[String]) {
+    func streamData(_ data:[String]) {
         let tokenizer = StormFrontTokenizer()
         
         for line in data {

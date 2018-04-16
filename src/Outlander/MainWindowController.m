@@ -24,7 +24,7 @@
 @interface MainWindowController ()
     @property (nonatomic, strong) LoginViewController *loginViewController;
     @property (nonatomic, strong) SettingsWindowController *settingsWindowController;
-    @property (nonatomic, strong) AutoMapperWindowController *autoMapperWindowController;
+//    @property (nonatomic, strong) AutoMapperWindowController *autoMapperWindowController;
     @property (nonatomic, strong) IBOutlet NSPanel *sheet;
     @property (nonatomic, strong) NSViewController *currentViewController;
     @property (nonatomic, strong) ChooseProfileViewController *chooseProfileViewController;
@@ -66,8 +66,8 @@
     
     _settingsWindowController = [[SettingsWindowController alloc] init];
     
-    _autoMapperWindowController = [[AutoMapperWindowController alloc] initWithWindowNibName:@"AutoMapperWindowController"];
-    [_autoMapperWindowController setContext:_gameContext];
+//    _autoMapperWindowController = [[AutoMapperWindowController alloc] initWithWindowNibName:@"AutoMapperWindowController"];
+//    [_autoMapperWindowController setContext:_gameContext];
 
     _chooseProfileViewController = [[ChooseProfileViewController alloc]
                                     initWithNibName:@"ChooseProfileViewController"
@@ -127,9 +127,9 @@
         [self saveSettings];
     }
 
-    if([token isEqualToString:@"OL:map:reload"]) {
-        [_autoMapperWindowController loadMaps];
-    }
+//    if([token isEqualToString:@"OL:map:reload"]) {
+//        [_autoMapperWindowController loadMaps];
+//    }
 }
 
 - (TestViewController *)currentVC {
@@ -233,7 +233,7 @@
 - (void)awakeFromNib {
 
     [_appSettingsLoader load];
-    [_autoMapperWindowController loadMaps];
+//    [_autoMapperWindowController loadMaps];
 
     [self.window setFrame:NSMakeRect(_gameContext.layout.primaryWindow.x,
                                      _gameContext.layout.primaryWindow.y,
@@ -287,10 +287,10 @@
         [_settingsWindowController showWindow:self];
     } else if([command isEqualToString:@"showAutoMapper"]){
         
-        [_autoMapperWindowController showWindow:self];
+//        [_autoMapperWindowController showWindow:self];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
-            [_autoMapperWindowController setSelectedZone];
+//            [_autoMapperWindowController setSelectedZone];
         });
 
     } else if([_currentViewController conformsToProtocol:@protocol(Commands)]) {

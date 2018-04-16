@@ -27,7 +27,7 @@ public class JSONSerializer {
      - JsonIsNotArray:			-
      - JsonIsNotValid:			-
      */
-    public enum JSONSerializerError: ErrorType {
+    public enum JSONSerializerError: Error {
         case JsonIsNotDictionary
         case JsonIsNotArray
         case JsonIsNotValid
@@ -41,7 +41,7 @@ public class JSONSerializer {
      - returns: A NSDictionary representation of the JSON string.
      */
     public static func toDictionary(jsonString: String) throws -> NSDictionary {
-        if let dictionary = try jsonToAnyObject(jsonString) as? NSDictionary {
+        if let dictionary = try jsonToAnyObject(jsonString: jsonString) as? NSDictionary {
             return dictionary
         } else {
             throw JSONSerializerError.JsonIsNotDictionary
@@ -55,7 +55,7 @@ public class JSONSerializer {
      - returns: NSArray representation of the JSON objects.
      */
     public static func toArray(jsonString: String) throws -> NSArray {
-        if let array = try jsonToAnyObject(jsonString) as? NSArray {
+        if let array = try jsonToAnyObject(jsonString: jsonString) as? NSArray {
             return array
         } else {
             throw JSONSerializerError.JsonIsNotArray
@@ -68,15 +68,15 @@ public class JSONSerializer {
      - throws: Throws error of type JSONSerializerError.
      - returns: Returns the JSON string as AnyObject
      */
-    private static func jsonToAnyObject(jsonString: String) throws -> AnyObject? {
-        var any: AnyObject?
+    private static func jsonToAnyObject(jsonString: String) throws -> Any? {
+        var any: Any?
 
-        if let data = jsonString.dataUsingEncoding(NSUTF8StringEncoding) {
+        if let data = jsonString.data(using: String.Encoding.utf8) {
             do {
-                any = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableContainers)
+                any = try JSONSerialization.jsonObject(with: data, options: .mutableContainers)
             }
             catch let error as NSError {
-                let sError = String(error)
+                let sError = String(describing: error)
                 NSLog(sError)
                 throw JSONSerializerError.JsonIsNotValid
             }
@@ -98,16 +98,16 @@ public class JSONSerializer {
         children += mirrorChildrenCollection
 
         var currentMirror = mirror
-        while let superclassChildren = currentMirror.superclassMirror()?.children {
+        while let superclassChildren = currentMirror.superclassMirror?.children {
             let randomCollection = AnyRandomAccessCollection(superclassChildren)!
             children += randomCollection
-            currentMirror = currentMirror.superclassMirror()!
+            currentMirror = currentMirror.superclassMirror!
         }
 
         var filteredChildren = [(label: String?, value: Any)]()
         for (optionalPropertyName, value) in children {
-            if !optionalPropertyName!.containsString("notMapped_") {
-                filteredChildren += [(optionalPropertyName, value)]
+            if !optionalPropertyName!.contains("notMapped_") {
+                filteredChildren.append((optionalPropertyName, value))
             }
         }
 
@@ -123,17 +123,17 @@ public class JSONSerializer {
 
             var handledValue = String()
 
-            if propertyName == "Some" && property.displayStyle == Mirror.DisplayStyle.Struct {
-                handledValue = toJson(value)
+            if propertyName == "Some" && property.displayStyle == Mirror.DisplayStyle.struct {
+                handledValue = toJson(object: value)
                 skip = true
             }
             else if (value is Int || value is Double || value is Float || value is Bool) &&
-                property.displayStyle != Mirror.DisplayStyle.Optional {
-                handledValue = String(value ?? "null")
+                property.displayStyle != Mirror.DisplayStyle.optional {
+                handledValue = String(describing: value ?? "null")
             }
             else if let array = value as? [Int?] {
                 handledValue += "["
-                for (index, value) in array.enumerate() {
+                for (index, value) in array.enumerated() {
                     handledValue += value != nil ? String(value!) : "null"
                     handledValue += (index < array.count-1 ? ", " : "")
                 }
@@ -141,7 +141,7 @@ public class JSONSerializer {
             }
             else if let array = value as? [Double?] {
                 handledValue += "["
-                for (index, value) in array.enumerate() {
+                for (index, value) in array.enumerated() {
                     handledValue += value != nil ? String(value!) : "null"
                     handledValue += (index < array.count-1 ? ", " : "")
                 }
@@ -149,7 +149,7 @@ public class JSONSerializer {
             }
             else if let array = value as? [Float?] {
                 handledValue += "["
-                for (index, value) in array.enumerate() {
+                for (index, value) in array.enumerated() {
                     handledValue += value != nil ? String(value!) : "null"
                     handledValue += (index < array.count-1 ? ", " : "")
                 }
@@ -157,7 +157,7 @@ public class JSONSerializer {
             }
             else if let array = value as? [Bool?] {
                 handledValue += "["
-                for (index, value) in array.enumerate() {
+                for (index, value) in array.enumerated() {
                     handledValue += value != nil ? String(value!) : "null"
                     handledValue += (index < array.count-1 ? ", " : "")
                 }
@@ -165,7 +165,7 @@ public class JSONSerializer {
             }
             else if let array = value as? [String?] {
                 handledValue += "["
-                for (index, value) in array.enumerate() {
+                for (index, value) in array.enumerated() {
                     handledValue += value != nil ? "\"\(value!)\"" : "null"
                     handledValue += (index < array.count-1 ? ", " : "")
                 }
@@ -173,7 +173,7 @@ public class JSONSerializer {
             }
             else if let array = value as? [String] {
                 handledValue += "["
-                for (index, value) in array.enumerate() {
+                for (index, value) in array.enumerated() {
                     handledValue += "\"\(value)\""
                     handledValue += (index < array.count-1 ? ", " : "")
                 }
@@ -181,9 +181,9 @@ public class JSONSerializer {
             }
             else if let array = value as? NSArray {
                 handledValue += "["
-                for (index, value) in array.enumerate() {
+                for (index, value) in array.enumerated() {
                     if !(value is Int) && !(value is Double) && !(value is Float) && !(value is Bool) && !(value is String) {
-                        handledValue += toJson(value)
+                        handledValue += toJson(object: value)
                     }
                     else {
                         handledValue += "\(value)"
@@ -192,21 +192,22 @@ public class JSONSerializer {
                 }
                 handledValue += "]"
             }
-            else if property.displayStyle == Mirror.DisplayStyle.Class ||
-                property.displayStyle == Mirror.DisplayStyle.Struct ||
-                String(value.dynamicType).containsString("#") {
-                handledValue = toJson(value)
+            else if property.displayStyle == Mirror.DisplayStyle.class ||
+                property.displayStyle == Mirror.DisplayStyle.struct ||
+                String(describing: type(of: value)).contains("#") {
+                handledValue = toJson(object: value)
             }
-            else if property.displayStyle == Mirror.DisplayStyle.Optional {
-                let str = String(value)
+            else if property.displayStyle == Mirror.DisplayStyle.optional {
+                let str = String(describing: value)
+                let range = str.characters.index(str.startIndex, offsetBy: 9)..<str.characters.index(before: str.endIndex)
                 if str != "nil" {
-                    handledValue = String(str).substringWithRange(str.startIndex.advancedBy(9)..<str.endIndex.advancedBy(-1))
+                    handledValue = String(str).substring(with: range)
                 } else {
                     handledValue = "null"
                 }
             }
             else {
-                handledValue = String(value) != "nil" ? "\"\(value)\"" : "null"
+                handledValue = String(describing: value) != "nil" ? "\"\(value)\"" : "null"
             }
 
             if !skip {
@@ -223,10 +224,10 @@ public class JSONSerializer {
         }
 
         if prettify {
-            let jsonData = json.dataUsingEncoding(NSUTF8StringEncoding)!
-            let jsonObject:AnyObject = try! NSJSONSerialization.JSONObjectWithData(jsonData, options: [])
-            let prettyJsonData = try! NSJSONSerialization.dataWithJSONObject(jsonObject, options: .PrettyPrinted)
-            json = NSString(data: prettyJsonData, encoding: NSUTF8StringEncoding)! as String
+            let jsonData = json.data(using: String.Encoding.utf8)!
+            let jsonObject:AnyObject = try! JSONSerialization.jsonObject(with: jsonData, options: []) as AnyObject
+            let prettyJsonData = try! JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+            json = NSString(data: prettyJsonData, encoding: String.Encoding.utf8.rawValue)! as String
         }
 
         return json

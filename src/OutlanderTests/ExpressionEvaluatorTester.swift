@@ -291,7 +291,7 @@ class ExpressionEvaluatorTester : QuickSpec {
         }
     }
     
-    private func getStringResult(result:EvalResult) -> String {
+    fileprivate func getStringResult(_ result:EvalResult) -> String {
         switch(result) {
         case .Str(let x):
             return x

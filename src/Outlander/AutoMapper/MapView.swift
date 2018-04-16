@@ -10,10 +10,10 @@ import Cocoa
 
 class MapView: NSView {
     
-    private var mapZone:MapZone?
+    fileprivate var mapZone:MapZone?
     var rect:NSRect?
-    private var trackingArea:NSTrackingArea?
-    private var nodeLookup:[NSValue:String] = [:]
+    fileprivate var trackingArea:NSTrackingArea?
+    fileprivate var nodeLookup:[NSValue:String] = [:]
     
     var mapLevel:Int = 0 {
         didSet {
@@ -48,7 +48,7 @@ class MapView: NSView {
         return self.mapZone?.id
     }
     
-    func setZone(mapZone:MapZone, rect:NSRect) {
+    func setZone(_ mapZone:MapZone, rect:NSRect) {
         self.mapZone = mapZone
         self.rect = rect
         self.nodeLookup = [:]
@@ -58,7 +58,7 @@ class MapView: NSView {
         self.needsDisplay = true
     }
     
-    override var flipped:Bool {
+    override var isFlipped:Bool {
         get {
             return true
         }
@@ -79,16 +79,16 @@ class MapView: NSView {
     func createTrackingArea() -> NSTrackingArea {
         return NSTrackingArea(
             rect: self.bounds,
-            options: [NSTrackingAreaOptions.ActiveInKeyWindow, NSTrackingAreaOptions.MouseMoved],
+            options: [NSTrackingAreaOptions.activeInKeyWindow, NSTrackingAreaOptions.mouseMoved],
             owner: self,
             userInfo: nil)
     }
     
-    override func mouseMoved(theEvent: NSEvent) {
+    override func mouseMoved(with theEvent: NSEvent) {
         
         let globalLocation = NSEvent.mouseLocation()
-        let windowLocation = self.window!.convertRectFromScreen(NSRect(x: globalLocation.x, y: globalLocation.y, width: 0, height: 0))
-        let viewLocation = self.convertPoint(windowLocation.origin, fromView: nil)
+        let windowLocation = self.window!.convertFromScreen(NSRect(x: globalLocation.x, y: globalLocation.y, width: 0, height: 0))
+        let viewLocation = self.convert(windowLocation.origin, from: nil)
         
         self.lastMousePosition = viewLocation
         
@@ -96,14 +96,14 @@ class MapView: NSView {
     }
     
     var lastMousePosition:CGPoint?
-    var debounceTimer:NSTimer?
+    var debounceTimer:Timer?
     
     func debouceLookupRoom() {
         if let timer = debounceTimer {
             timer.invalidate()
         }
-        debounceTimer = NSTimer(timeInterval: 0.07, target: self, selector: #selector(MapView.lookupRoom), userInfo: nil, repeats: false)
-        NSRunLoop.currentRunLoop().addTimer(debounceTimer!, forMode: "NSDefaultRunLoopMode")
+        debounceTimer = Timer(timeInterval: 0.07, target: self, selector: #selector(MapView.lookupRoom), userInfo: nil, repeats: false)
+        RunLoop.current.add(debounceTimer!, forMode: RunLoopMode(rawValue: "NSDefaultRunLoopMode"))
     }
     
     func lookupRoom() {
@@ -121,22 +121,22 @@ class MapView: NSView {
             }
         }
         
-        dispatch_async(dispatch_get_main_queue(), {
+        DispatchQueue.main.async(execute: {
             self.nodeHover?(room)
         })
     }
     
-    func redrawRoom(id:String?) {
+    func redrawRoom(_ id:String?) {
         
         if let rect = self.rectForRoom(id) {
             
-            dispatch_async(dispatch_get_main_queue(), {
-                self.setNeedsDisplayInRect(rect)
+            DispatchQueue.main.async(execute: {
+                self.setNeedsDisplay(rect)
             })
         }
     }
     
-    func rectForRoom(id:String?) -> NSRect? {
+    func rectForRoom(_ id:String?) -> NSRect? {
         
         if let roomId = id {
             
@@ -151,14 +151,14 @@ class MapView: NSView {
         return nil
     }
     
-    override func drawRect(dirtyRect: NSRect) {
+    override func draw(_ dirtyRect: NSRect) {
         
         if let zone = self.mapZone {
             
             var strokeWidth:CGFloat = 0.5
             
             NSBezierPath.setDefaultLineWidth(strokeWidth)
-            NSBezierPath.setDefaultLineCapStyle(NSLineCapStyle.RoundLineCapStyle)
+            NSBezierPath.setDefaultLineCapStyle(NSLineCapStyle.roundLineCapStyle)
             
             let rooms = zone.rooms.filter { $0.position.z == self.mapLevel }
             
@@ -174,7 +174,7 @@ class MapView: NSView {
                     let arc = zone.roomWithId(dest.destination)!
                     let arcPoint = self.translatePosition(arc.position)
                     
-                    NSBezierPath.strokeLineFromPoint(point, toPoint: arcPoint)
+                    NSBezierPath.strokeLine(from: point, to: arcPoint)
                 }
             }
             
@@ -186,7 +186,7 @@ class MapView: NSView {
                     
                     //println("(\(room.position.x), \(room.position.y)) to \(point)")
                     
-                    if let notes = room.notes where notes.rangeOfString(".xml") != nil {
+                    if let notes = room.notes, notes.range(of: ".xml") != nil {
                         strokeWidth = 1.5
                         NSBezierPath.setDefaultLineWidth(strokeWidth)
                         self.zoneExitPathColor.setStroke()
@@ -203,7 +203,7 @@ class MapView: NSView {
                     self.nodeLookup[loc] = room.id
                    
                     let border = NSBezierPath()
-                    border.appendBezierPathWithRect(outlineRect)
+                    border.appendRect(outlineRect)
                     border.stroke()
                     
                     if room.id == self.currentRoomId {
@@ -239,15 +239,15 @@ class MapView: NSView {
                 let point = self.translatePosition(label.position)
                 
                 let storage = NSTextStorage(string: label.text)
-                storage.drawAtPoint(point)
+                storage.draw(at: point)
             }
             
         }
         
-        super.drawRect(dirtyRect)
+        super.draw(dirtyRect)
     }
     
-    func translatePosition(point:MapPosition) -> CGPoint {
+    func translatePosition(_ point:MapPosition) -> CGPoint {
         
         let x = point.x
         let y = point.y
@@ -262,7 +262,7 @@ class MapView: NSView {
     }
 }
 
-public class KnownColors {
+open class KnownColors {
     
     static var colors:[String:String] = [
         "Aqua": "#00ffff",
@@ -273,7 +273,7 @@ public class KnownColors {
         "Red": "#ff3300",
         "Yellow": "#ffff00"]
 
-    static func find(color:String?) -> NSColor? {
+    static func find(_ color:String?) -> NSColor? {
         
         if color == nil {
             return nil

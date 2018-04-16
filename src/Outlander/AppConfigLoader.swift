@@ -11,7 +11,7 @@ import Foundation
 @objc
 class AppConfigLoader : NSObject {
 
-    class func newInstance(context:GameContext, fileSystem:FileSystem) -> AppConfigLoader {
+    class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> AppConfigLoader {
         return AppConfigLoader(context: context, fileSystem: fileSystem)
     }
 
@@ -36,7 +36,7 @@ class AppConfigLoader : NSObject {
         var data:String?
 
         do {
-            data = try self.fileSystem.stringWithContentsOfFile(configFile, encoding: NSUTF8StringEncoding)
+            data = try self.fileSystem.string(withContentsOfFile: configFile, encoding: String.Encoding.utf8.rawValue)
         } catch {
             return
         }
@@ -46,7 +46,7 @@ class AppConfigLoader : NSObject {
         }
 
         do {
-            let dict = try JSONSerializer.toDictionary(data!)
+            let dict = try JSONSerializer.toDictionary(jsonString: data!)
 
             context.settings.defaultProfile = dict.stringValue("defaultProfile", defaultVal: "Default")
             context.settings.checkForApplicationUpdates = dict.boolValue("checkForApplicationUpdates", defaultVal: true)
@@ -64,7 +64,7 @@ class AppConfigLoader : NSObject {
             checkForApplicationUpdates: self.context.settings.checkForApplicationUpdates ? "yes" : "no",
             downloadPreReleaseVersions: self.context.settings.downloadPreReleaseVersions ? "yes" : "no")
 
-        let json = JSONSerializer.toJson(settings, prettify: true)
+        let json = JSONSerializer.toJson(object: settings, prettify: true)
 
         self.fileSystem.write(json, toFile: configFile)
     }

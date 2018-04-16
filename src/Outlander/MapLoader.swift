@@ -7,16 +7,16 @@
 //
 
 import Foundation
-import GlimpseXML
+//import GlimpseXML
 
 enum MapLoadResult {
-    case Success(MapZone)
-    case Error(ErrorType)
+    case success(MapZone)
+    case error(Error)
 }
 
 enum MapMetaResult {
-    case Success(MapInfo)
-    case Error(ErrorType)
+    case success(MapInfo)
+    case error(Error)
 }
 
 final class MapInfo {
@@ -42,16 +42,16 @@ func ==(lhs: MapInfo, rhs: MapInfo) -> Bool {
 
 final class MapLoader {
     
-    func loadFolder(folder: String) -> [MapMetaResult] {
+    func loadFolder(_ folder: String) -> [MapMetaResult] {
 
-        let directoryURL = NSURL(fileURLWithPath: folder, isDirectory: true)
-        let fileManager = NSFileManager.defaultManager()
+        let directoryURL = URL(fileURLWithPath: folder, isDirectory: true)
+        let fileManager = FileManager.default
 
-        let options: NSDirectoryEnumerationOptions = [.SkipsHiddenFiles, .SkipsSubdirectoryDescendants]
+        let options: FileManager.DirectoryEnumerationOptions = [.skipsHiddenFiles, .skipsSubdirectoryDescendants]
 
-        let enumerator = fileManager.enumeratorAtURL(
-            directoryURL,
-            includingPropertiesForKeys: [NSURLNameKey],
+        let enumerator = fileManager.enumerator(
+            at: directoryURL,
+            includingPropertiesForKeys: [URLResourceKey.nameKey],
             options: options,
             errorHandler: { (url, error) -> Bool in
                 print("directoryEnumerator error at \(url): ", error)
@@ -60,16 +60,16 @@ final class MapLoader {
 
         var files:[String] = []
 
-        while let element = enumerator?.nextObject() as? NSURL {
-            if (element.lastPathComponent?.hasSuffix(".xml")) == true {
-                files.append(element.lastPathComponent!)
+        while let element = enumerator?.nextObject() as? URL {
+            if (element.lastPathComponent.hasSuffix(".xml")) == true {
+                files.append(element.lastPathComponent)
             }
         }
         
         return files.map { self.loadMeta($0, folder: folder) }
     }
     
-    func loadMeta(file: String, folder: String) -> MapMetaResult {
+    func loadMeta(_ file: String, folder: String) -> MapMetaResult {
         
         print("Loading \(file)")
         
@@ -81,15 +81,15 @@ final class MapLoader {
             let id = doc.rootElement.attributeValue("id", namespace: nil)!
             let name = doc.rootElement.attributeValue("name", namespace: nil)!
             
-            return MapMetaResult.Success(
+            return MapMetaResult.success(
                 MapInfo(id, name: name, file: file)
             )
         } catch let error {
-            return MapMetaResult.Error(error)
+            return MapMetaResult.error(error)
         }
     }
     
-    func load(filePath: String) -> MapLoadResult {
+    func load(_ filePath: String) -> MapLoadResult {
 
         do {
             let doc = try GlimpseXML.Document.parseFile(filePath)
@@ -125,21 +125,21 @@ final class MapLoader {
                 return MapLabel(text: text, position: position)
             }
 
-            return MapLoadResult.Success(mapZone)
+            return MapLoadResult.success(mapZone)
         }
         catch let error {
-            return MapLoadResult.Error(error)
+            return MapLoadResult.error(error)
         }
     }
     
-    private func descriptions(nodes:[GlimpseXML.Node]) -> [String] {
+    fileprivate func descriptions(_ nodes:[GlimpseXML.Node]) -> [String] {
 
         return nodes
             .filter { $0.name == "description" }
             .map { $0.text ?? "" }
     }
     
-    private func arcs(nodes:[GlimpseXML.Node]) -> [MapArc] {
+    fileprivate func arcs(_ nodes:[GlimpseXML.Node]) -> [MapArc] {
 
         return nodes
             .filter {$0.name == "arc"}
@@ -152,7 +152,7 @@ final class MapLoader {
         }
     }
     
-    func position(items:[GlimpseXML.Node]) -> MapPosition {
+    func position(_ items:[GlimpseXML.Node]) -> MapPosition {
         
         let filtered = items.filter { $0.name == "position" }
         
