@@ -68,7 +68,7 @@ class PlayCommandHandler : NSObject, CommandHandler, NSSoundDelegate {
         }
         
         if let sound = NSSound(contentsOfFile: file, byReference: false) {
-            sound.setName(file)
+            sound.setName(NSSound.Name(rawValue: file))
             sound.delegate = self
             sounds.append(sound)
             sound.play()

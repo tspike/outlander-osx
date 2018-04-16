@@ -36,13 +36,13 @@ class HighlightCellView: NSView {
         
         let strokeWidth:CGFloat = 3.5
         
-        NSBezierPath.setDefaultLineWidth(strokeWidth)
-        NSBezierPath.setDefaultLineCapStyle(NSLineCapStyle.roundLineCapStyle)
+        NSBezierPath.defaultLineWidth = strokeWidth
+        NSBezierPath.defaultLineCapStyle = NSBezierPath.LineCapStyle.roundLineCapStyle
         
         if let bg = backgroundColor {
             bg.setFill()
             
-            NSRectFill(self.bounds)
+            self.bounds.fill()
         }
         
         if self.selected {

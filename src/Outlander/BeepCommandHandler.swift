@@ -20,7 +20,7 @@ class BeepCommandHandler : NSObject, CommandHandler {
     }
     
     func handle(_ command: String, with withContext: GameContext) {
-        NSBeep()
+        NSSound.beep()
     }
 }
 
@@ -36,6 +36,6 @@ class FlashCommandHandler : NSObject, CommandHandler {
     }
     
     func handle(_ command: String, with withContext: GameContext) {
-        NSApplication.shared().requestUserAttention(NSRequestUserAttentionType.criticalRequest)
+        NSApplication.shared.requestUserAttention(NSApplication.RequestUserAttentionType.criticalRequest)
     }
 }

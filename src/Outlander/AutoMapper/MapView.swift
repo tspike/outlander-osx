@@ -79,14 +79,14 @@ class MapView: NSView {
     func createTrackingArea() -> NSTrackingArea {
         return NSTrackingArea(
             rect: self.bounds,
-            options: [NSTrackingAreaOptions.activeInKeyWindow, NSTrackingAreaOptions.mouseMoved],
+            options: [NSTrackingArea.Options.activeInKeyWindow, NSTrackingArea.Options.mouseMoved],
             owner: self,
             userInfo: nil)
     }
     
     override func mouseMoved(with theEvent: NSEvent) {
         
-        let globalLocation = NSEvent.mouseLocation()
+        let globalLocation = NSEvent.mouseLocation
         let windowLocation = self.window!.convertFromScreen(NSRect(x: globalLocation.x, y: globalLocation.y, width: 0, height: 0))
         let viewLocation = self.convert(windowLocation.origin, from: nil)
         
@@ -106,7 +106,7 @@ class MapView: NSView {
         RunLoop.current.add(debounceTimer!, forMode: RunLoopMode(rawValue: "NSDefaultRunLoopMode"))
     }
     
-    func lookupRoom() {
+    @objc func lookupRoom() {
         
         let point = self.lastMousePosition!
         
@@ -157,8 +157,8 @@ class MapView: NSView {
             
             var strokeWidth:CGFloat = 0.5
             
-            NSBezierPath.setDefaultLineWidth(strokeWidth)
-            NSBezierPath.setDefaultLineCapStyle(NSLineCapStyle.roundLineCapStyle)
+            NSBezierPath.defaultLineWidth = strokeWidth
+            NSBezierPath.defaultLineCapStyle = NSBezierPath.LineCapStyle.roundLineCapStyle
             
             let rooms = zone.rooms.filter { $0.position.z == self.mapLevel }
             
@@ -188,12 +188,12 @@ class MapView: NSView {
                     
                     if let notes = room.notes, notes.range(of: ".xml") != nil {
                         strokeWidth = 1.5
-                        NSBezierPath.setDefaultLineWidth(strokeWidth)
+                        NSBezierPath.defaultLineWidth = strokeWidth
                         self.zoneExitPathColor.setStroke()
                     }
                     else {
                         strokeWidth = 0.5
-                        NSBezierPath.setDefaultLineWidth(strokeWidth)
+                        NSBezierPath.defaultLineWidth = strokeWidth
                         self.defaultPathColor.setStroke()
                     }
 
@@ -223,12 +223,12 @@ class MapView: NSView {
                         
                     }
                     
-                    NSRectFill(NSMakeRect(
+                    NSMakeRect(
                         outlineRect.origin.x + (strokeWidth / 2.0),
                         outlineRect.origin.y + (strokeWidth / 2.0),
                         outlineRect.width - (strokeWidth/2.0 * 2.0),
                         outlineRect.height - (strokeWidth/2.0 * 2.0)
-                    ));
+                    ).fill();
                 }
             }
             

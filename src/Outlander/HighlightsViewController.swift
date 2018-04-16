@@ -54,8 +54,8 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
     override open func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = NSNib(nibNamed: "HighlightCellView", bundle: Bundle.main)
-        tableView.register(nib!, forIdentifier: "highlightCellView")
+        let nib = NSNib(nibNamed: NSNib.Name(rawValue: "HighlightCellView"), bundle: Bundle.main)
+        tableView.register(nib!, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: "highlightCellView"))
     }
     
     open override func awakeFromNib() {
@@ -196,7 +196,7 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
     }
     
     open func tableView(_ tableView: NSTableView, viewForTableColumn: NSTableColumn, row: Int) -> NSView {
-        let cell = tableView.make(withIdentifier: "highlightCellView", owner: self) as? HighlightCellView
+        let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "highlightCellView"), owner: self) as? HighlightCellView
         
         if(row > -1 && row < _context!.highlights.count()) {
             
@@ -269,17 +269,17 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
     }
 
     open func sound(_ sound: NSSound, didFinishPlaying flag: Bool) {
-        soundButton.image = NSImage(named: "Play")
+        soundButton.image = NSImage(named: NSImage.Name(rawValue: "Play"))
     }
 
     func stopSound() {
         _sound?.stop()
-        soundButton.image = NSImage(named: "Play")
+        soundButton.image = NSImage(named: NSImage.Name(rawValue: "Play"))
     }
 
     func playSound() {
         if _sound != nil && _sound!.play() {
-            soundButton.image = NSImage(named: "Stop")
+            soundButton.image = NSImage(named: NSImage.Name(rawValue: "Stop"))
         }
     }
 
@@ -299,7 +299,7 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
         dialog.allowsMultipleSelection = false;
         dialog.allowedFileTypes        = ["mp3", "wav"];
 
-        if (dialog.runModal() == NSModalResponseOK) {
+        if (dialog.runModal() == NSApplication.ModalResponse.OK) {
             if let result = dialog.url {
 
                 if result.path != nil && result.path.hasPrefix(_context!.pathProvider.soundsFolder()) {

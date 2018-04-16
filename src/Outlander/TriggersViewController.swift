@@ -112,10 +112,10 @@ open class TriggersViewController: NSViewController, SettingsView, NSTableViewDa
         
         var res:String = ""
         
-        if(tableColumn!.identifier == "trigger") {
+        if(tableColumn!.identifier.rawValue == "trigger") {
             res = item.trigger != nil ? item.trigger! : ""
         }
-        else if(tableColumn!.identifier == "action") {
+        else if(tableColumn!.identifier.rawValue == "action") {
             res = item.action != nil ? item.action! : ""
         }
         else {

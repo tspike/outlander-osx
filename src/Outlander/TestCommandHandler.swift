@@ -20,6 +20,6 @@ class TestCommandHandler : NSObject, CommandHandler {
     }
     
     func handle(_ command: String, with withContext: GameContext) {
-        NSBeep()
+        NSSound.beep()
     }
 }

@@ -15,7 +15,7 @@ import Foundation
 @objc open class ParseContext : NSObject {
     var nodes = [Node]()
     var consumedCharacters : String {
-        let substring = __sourceString[__startIndex..<__currentIndex]
+        let substring: String = __sourceString[__startIndex..<__currentIndex]
         return substring
     }
     
@@ -157,7 +157,7 @@ import Foundation
     }
     
     fileprivate func pushContext(_ context:ParseContext, range:Range<String.Index>) -> [Node] {
-        let newStr = context.__sourceString[range]
+        let newStr: String = context.__sourceString[range]
         let newContext = ParseContext(atPosition: 0, withMarker:newStr.startIndex, forString:newStr)
         return scanContext(newContext)
     }

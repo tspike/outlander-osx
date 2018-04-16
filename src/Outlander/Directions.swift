@@ -10,18 +10,18 @@ import Foundation
 
 open class DirectionsView : NSView {
     
-    var dir = NSImage(named: "Directions")
-    var north = NSImage(named: "North")
-    var south = NSImage(named: "South")
-    var east = NSImage(named: "East")
-    var west = NSImage(named: "West")
-    var northeast = NSImage(named: "Northeast")
-    var northwest = NSImage(named: "Northwest")
-    var southeast = NSImage(named: "Southeast")
-    var southwest = NSImage(named: "Southwest")
-    var out = NSImage(named: "Out")
-    var up = NSImage(named: "Up")
-    var down = NSImage(named: "Down")
+    var dir = NSImage(named: NSImage.Name(rawValue: "Directions"))
+    var north = NSImage(named: NSImage.Name(rawValue: "North"))
+    var south = NSImage(named: NSImage.Name(rawValue: "South"))
+    var east = NSImage(named: NSImage.Name(rawValue: "East"))
+    var west = NSImage(named: NSImage.Name(rawValue: "West"))
+    var northeast = NSImage(named: NSImage.Name(rawValue: "Northeast"))
+    var northwest = NSImage(named: NSImage.Name(rawValue: "Northwest"))
+    var southeast = NSImage(named: NSImage.Name(rawValue: "Southeast"))
+    var southwest = NSImage(named: NSImage.Name(rawValue: "Southwest"))
+    var out = NSImage(named: NSImage.Name(rawValue: "Out"))
+    var up = NSImage(named: NSImage.Name(rawValue: "Up"))
+    var down = NSImage(named: NSImage.Name(rawValue: "Down"))
     
     var availableDirections:[String] = []
     

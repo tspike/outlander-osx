@@ -109,7 +109,7 @@ open class SwiftRegex: NSObject {
         if match != nil {
             var groups = [String]()
             for groupno in 0...regex.numberOfCaptureGroups {
-                if let group = substring( match.rangeAt(groupno) ) as String! {
+                if let group = substring( match.range(at: groupno) ) as String! {
                     groups.append( group )
                 } else {
                     groups.append( regexNoGroup ) // avoids bridging problems
@@ -135,7 +135,7 @@ open class SwiftRegex: NSObject {
                 for match in Array(matchResults().reversed()) {
                     let replacement = regex.replacementString( for: match,
                                                                         in: target as String, offset: 0, template: newValue )
-                    mutableTarget.replaceCharacters( in: match.rangeAt(groupno), with: replacement )
+                    mutableTarget.replaceCharacters( in: match.range(at: groupno), with: replacement )
                 }
             } else {
                 SwiftRegex.failure("Group modify on non-mutable")
@@ -168,8 +168,8 @@ open class SwiftRegex: NSObject {
     open func dictionary( _ options: NSRegularExpression.MatchingOptions? = nil ) -> Dictionary<String,String> {
         var out = Dictionary<String,String>()
         for match in matchResults(options) {
-            out[substring(match.rangeAt(1))] =
-                substring(match.rangeAt(2))
+            out[substring(match.range(at: 1))] =
+                substring(match.range(at: 2))
         }
         return out
     }

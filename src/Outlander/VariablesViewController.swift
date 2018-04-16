@@ -155,7 +155,7 @@ open class VariablesViewController: NSViewController, SettingsView, NSTableViewD
         
         let item = _globalVars[row]
         
-        if(tableColumn!.identifier == "name") {
+        if(tableColumn!.identifier.rawValue == "name") {
             return item.name
         }
         

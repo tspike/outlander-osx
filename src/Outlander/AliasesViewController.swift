@@ -112,7 +112,7 @@ open class AliasesViewController: NSViewController, SettingsView, NSTableViewDat
         
         let item = _context!.aliases.object(at: row) as! Alias
         
-        if(tableColumn!.identifier == "alias") {
+        if(tableColumn!.identifier.rawValue == "alias") {
             return item.pattern
         }
         
