@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class TDPUpdateHandler : NSObject {
     
     class func newInstance() -> TDPUpdateHandler {

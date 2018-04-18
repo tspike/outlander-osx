@@ -13,7 +13,8 @@ extension NSColor {
     convenience init(hex:String) {
         var str = hex
         if(str.hasPrefix("#")) {
-            str = hex.substring(from: hex.characters.index(hex.startIndex, offsetBy: 1))
+            let idx = hex.index(hex.startIndex, offsetBy: 1)
+            str = String(hex[idx..<hex.endIndex])
         }
         var rgbValue:UInt32 = 0
         Scanner(string: str).scanHexInt32(&rgbValue)
@@ -38,7 +39,7 @@ extension NSColor {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
     }
     
-    func getHexString() -> String {
+    @objc func getHexString() -> String {
         let red = Int(round(self.redComponent * 0xFF))
         let grn = Int(round(self.greenComponent * 0xFF))
         let blu = Int(round(self.blueComponent * 0xFF))

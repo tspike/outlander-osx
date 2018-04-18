@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class SubstituteLoader : NSObject {
     
     class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> SubstituteLoader {
@@ -76,7 +76,7 @@ class SubstituteLoader : NSObject {
             
             subs += "#subs {\(pattern)} {\(action)}"
             
-            if className.characters.count > 0 {
+            if className.count > 0 {
                 subs += " {\(className)}"
             }
             subs += "\n"

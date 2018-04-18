@@ -8,7 +8,7 @@
 
 #import "MacrosLoader.h"
 #import "NSString+Categories.h"
-#import "OUtlander-Swift.h"
+#import "Outlander-Swift.h"
 
 @interface MacrosLoader () {
     GameContext *_context;

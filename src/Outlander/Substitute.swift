@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 open class Substitute : NSObject {
     var pattern:String?
     var action:String?

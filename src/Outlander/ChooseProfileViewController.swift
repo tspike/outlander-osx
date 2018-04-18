@@ -57,7 +57,7 @@ class ProfileDataSource : NSObject, NSTableViewDataSource {
         let enumerator = fileManager.enumerator(atPath: profilesFolder!)
         
         while let element = enumerator?.nextObject() as? String {
-            if !element.characters.contains(".") {
+            if !element.contains(".") {
                 profiles.append(
                     element.trimmingCharacters(
                         in: CharacterSet.whitespacesAndNewlines)
@@ -69,6 +69,7 @@ class ProfileDataSource : NSObject, NSTableViewDataSource {
     }
 }
 
+@objcMembers
 class ChooseProfileViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
     
     var okCommand:RACCommand?

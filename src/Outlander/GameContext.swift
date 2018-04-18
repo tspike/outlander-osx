@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 open class GameContext : NSObject {
     
     class func newInstance() -> GameContext {
@@ -69,11 +69,11 @@ open class GameContext : NSObject {
         self.maps = [:]
     }
 
-    open func presetFor(_ setting: String) -> ColorPreset? {
+    @objc open func presetFor(_ setting: String) -> ColorPreset? {
 
         let settingToCheck = setting.lowercased()
 
-        if settingToCheck.characters.count == 0 {
+        if settingToCheck.count == 0 {
             return ColorPreset("", "#cccccc")
         }
         
@@ -85,7 +85,7 @@ open class GameContext : NSObject {
     }
 }
 
-@objc
+@objcMembers
 open class VitalsSettings : NSObject {
     open var healthColor:String = "#cc0000"
     open var healthTextColor:String = "#f5f5f5"
@@ -99,7 +99,7 @@ open class VitalsSettings : NSObject {
     open var spiritTextColor:String = "#f5f5f5"
 }
 
-@objc
+@objcMembers
 open class ClassSettings : NSObject {
 
     fileprivate var _values:[String:Bool] = [:]

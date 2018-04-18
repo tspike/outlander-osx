@@ -28,13 +28,13 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
             self.didChangeValue(forKey: "selectedItem")
             
             if let item = selectedItem {
-                if item.color != nil && item.color!.characters.count > 0 {
+                if item.color != nil && item.color!.count > 0 {
                     colorWell.color = NSColor(hex: item.color!)
                 } else {
                     colorWell.color = NSColor.black
                 }
                 
-                if item.backgroundColor != nil && item.backgroundColor!.characters.count > 0 {
+                if item.backgroundColor != nil && item.backgroundColor!.count > 0 {
                     backgroundColorWell.color = NSColor(hex: item.backgroundColor!)
                 } else {
                     backgroundColorWell.color = NSColor.black
@@ -91,7 +91,7 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
                     item.backgroundColor = ""
                 }
                 
-                if item.backgroundColor!.characters.count > 0 {
+                if item.backgroundColor!.count > 0 {
                     backgroundColorWell.color = NSColor(hex: item.backgroundColor!)
                 }
                 
@@ -103,7 +103,7 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
                     item.color = ""
                 }
                 
-                if item.color!.characters.count > 0 {
+                if item.color!.count > 0 {
                     colorWell.color = NSColor(hex: item.color!)
                 }
 
@@ -205,7 +205,7 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
                 cell?.pattern.stringValue = hl.pattern ?? ""
                 cell?.filterClass.stringValue = hl.filterClass ?? ""
 
-                if hl.color != nil && hl.color!.characters.count > 0 {
+                if hl.color != nil && hl.color!.count > 0 {
                     cell?.colorField.stringValue = hl.color!
 
                     let color = NSColor(hex: hl.color!)
@@ -227,7 +227,7 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
                     cell?.selected = false
                 }
                 
-                if hl.backgroundColor != nil && hl.backgroundColor!.characters.count > 0 {
+                if hl.backgroundColor != nil && hl.backgroundColor!.count > 0 {
                     cell?.backgroundColor = NSColor(hex: hl.backgroundColor!)
                 } else {
                     cell?.backgroundColor = nil
@@ -302,7 +302,7 @@ open class HighlightsViewController: NSViewController, SettingsView, NSTableView
         if (dialog.runModal() == NSApplication.ModalResponse.OK) {
             if let result = dialog.url {
 
-                if result.path != nil && result.path.hasPrefix(_context!.pathProvider.soundsFolder()) {
+                if result.path.hasPrefix(_context!.pathProvider.soundsFolder()) {
                     self.selectedItem?.soundFile = result.lastPathComponent
 
                 } else {

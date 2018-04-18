@@ -8,8 +8,7 @@
 
 #import "Commands.h"
 #import "AppSettings.h"
-
-@protocol ISubscriber;
+#import "Outlander-Swift.h"
 
 @interface MainWindowController : NSWindowController <Commands, NSWindowDelegate, ISubscriber>
 

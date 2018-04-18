@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class TriggersLoader : NSObject {
     
     class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> TriggersLoader {
@@ -77,7 +77,7 @@ class TriggersLoader : NSObject {
             
             triggers += "#trigger {\(triggerText)} {\(action)}"
             
-            if className.characters.count > 0 {
+            if className.count > 0 {
                 triggers += " {\(className)}"
             }
             triggers += "\n"

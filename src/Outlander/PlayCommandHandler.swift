@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class PlayCommandHandler : NSObject, CommandHandler, NSSoundDelegate {
 
     var sounds:[NSSound] = []
@@ -27,11 +27,11 @@ class PlayCommandHandler : NSObject, CommandHandler, NSSoundDelegate {
     }
 
     func handle(_ command: String, with withContext: GameContext) {
-        let text = command
-            .substring(from: command.characters.index(command.startIndex, offsetBy: 5))
-            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let idx = command.index(command.startIndex, offsetBy: 5)
+        var text: String = String(command[idx..<command.endIndex])
+        text = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
-        guard text.characters.count > 0 else {
+        guard text.count > 0 else {
             removeStoppedSounds()
             return
         }

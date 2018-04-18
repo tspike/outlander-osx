@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class BugCommandHandler : NSObject, CommandHandler {
 
     class func newInstance() -> BugCommandHandler {

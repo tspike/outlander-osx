@@ -11,10 +11,9 @@
 #import "Shared.h"
 #import "Outlander-Swift.h"
 
-@interface GameStream : NSObject <InfoStream> {
-    GameServer *_gameServer;
-    GameParser *_gameParser;
-}
+@interface GameStream : NSObject <InfoStream> { }
+@property (atomic, strong) GameServer *gameServer;
+@property (atomic, strong) GameParser *gameParser;
 @property (atomic, strong) RACMulticastConnection *subject;
 @property (atomic, strong) RACSignal *connected;
 @property (atomic, strong) RACSubject *vitals;

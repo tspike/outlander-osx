@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class EchoCommandHandler : NSObject, CommandHandler {
     
     fileprivate var relay:CommandRelay
@@ -26,9 +26,9 @@ class EchoCommandHandler : NSObject, CommandHandler {
     }
     
     func handle(_ command: String, with withContext: GameContext) {
-        let echo = command
-            .substring(from: command.characters.index(command.startIndex, offsetBy: 5))
-            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let idx = command.index(command.startIndex, offsetBy: 5)
+        var echo: String = String(command[idx..<command.endIndex])
+        echo = echo.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         var groups = echo["^(>(\\w+)\\s)?((#[a-fA-F0-9]+)(,(#[a-fA-F0-9]+))?\\s)?(.*)"].groups()!
         

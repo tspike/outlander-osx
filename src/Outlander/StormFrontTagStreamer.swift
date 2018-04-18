@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 open class StormFrontTagStreamer : NSObject {
     
     fileprivate var tags:[TextTag]
@@ -237,7 +237,7 @@ open class StormFrontTagStreamer : NSObject {
             let id = node.attr("id")?.substringFromIndex(4).lowercased() ?? ""
             let visible = node.attr("visible") == "y" ? "1" : "0"
             
-            if id.characters.count == 0 {
+            if id.count == 0 {
                 return
             }
             
@@ -263,12 +263,11 @@ open class StormFrontTagStreamer : NSObject {
             
         case _ where node.name == "streamwindow":
             let id = node.attr("id")
-            var subtitle = node.attr("subtitle")
-            if id == "main" && subtitle != nil && subtitle!.characters.count > 3 {
-                subtitle = subtitle!.substring(from: subtitle!.characters.index(subtitle!.startIndex, offsetBy: 3))
-                if let t = subtitle {
-                    emitSetting?("roomtitle", t)
-                }
+            let subtitle = node.attr("subtitle")
+            if id == "main" && subtitle!.count > 3, let subtitle = subtitle {
+                let start = subtitle.index(subtitle.startIndex, offsetBy: 3)
+                let t = String(subtitle[start..<subtitle.endIndex])
+                emitSetting?("roomtitle", t)
             }
             
             if let win = id {
@@ -321,7 +320,7 @@ open class StormFrontTagStreamer : NSObject {
                 }
             }
            
-            if lastNode?.name == "preset" && tag!.text.characters.count > 0 && tag!.text!.hasPrefix("  You also see") {
+            if lastNode?.name == "preset" && tag!.text.count > 0 && tag!.text!.hasPrefix("  You also see") {
                 let text = tag!.text!.trimPrefix("  ")
                 tag?.text = "\n\(text)"
                 tag?.preset = lastNode?.attr("id")
@@ -480,7 +479,7 @@ open class StormFrontTagStreamer : NSObject {
             
             if child.name == "popbold" {
                 monsterCount += 1
-                if monsters.characters.count > 0 {
+                if monsters.count > 0 {
                     monsters += "|"
                 }
                 monsters += lastNode?.value ?? ""
@@ -494,9 +493,10 @@ open class StormFrontTagStreamer : NSObject {
     }
     
     open func parseExpBrief(_ compId:String, data:String, isNew:Bool) {
-        let expName = compId.substring(from: compId.characters.index(compId.startIndex, offsetBy: 4))
+        let idx = compId.index(compId.startIndex, offsetBy: 4)
+        let expName = String(compId[idx..<compId.endIndex])
         
-        if data.characters.count == 0 {
+        if data.count == 0 {
             
             let rate = LearningRate.fromRate(0)
             let skill = SkillExp()
@@ -505,8 +505,8 @@ open class StormFrontTagStreamer : NSObject {
             skill.mindState = rate
             skill.isNew = isNew
             
-            emitSetting?("\(expName).LearningRate", "\(rate?.rateId)")
-            emitSetting?("\(expName).LearningRateName", "\(rate?.desc)")
+            emitSetting?("\(expName).LearningRate", "\(String(describing: rate?.rateId))")
+            emitSetting?("\(expName).LearningRateName", "\(String(describing: rate?.desc.description))")
             
             emitExp?(skill)
             return
@@ -533,17 +533,16 @@ open class StormFrontTagStreamer : NSObject {
         skill.isNew = isNew
         
         emitSetting?("\(expName).Ranks", ranks as String)
-        emitSetting?("\(expName).LearningRate", "\(rate?.rateId)")
-        emitSetting?("\(expName).LearningRateName", "\(rate?.desc)")
+        emitSetting?("\(expName).LearningRate", "\(String(describing: rate?.rateId))")
+        emitSetting?("\(expName).LearningRateName", "\(String(describing:rate?.desc))")
         
         emitExp?(skill)
     }
     
     open func parseExp(_ compId:String, data:String, isNew:Bool) {
-        
-        let expName = compId.substring(from: compId.characters.index(compId.startIndex, offsetBy: 4))
-        
-        if data.characters.count == 0 {
+        let idx = compId.index(compId.startIndex, offsetBy: 4)
+        let expName = String(compId[idx..<compId.endIndex])
+        if data.count == 0 {
             
             let rate = LearningRate.fromRate(0)
             let skill = SkillExp()
@@ -552,8 +551,8 @@ open class StormFrontTagStreamer : NSObject {
             skill.mindState = rate
             skill.isNew = isNew
             
-            emitSetting?("\(expName).LearningRate", "\(rate?.rateId)")
-            emitSetting?("\(expName).LearningRateName", "\(rate?.desc)")
+            emitSetting?("\(expName).LearningRate", "\(String(describing: rate?.rateId))")
+            emitSetting?("\(expName).LearningRateName", "\(String(describing: rate?.desc))")
             
             emitExp?(skill)
             return
@@ -582,8 +581,8 @@ open class StormFrontTagStreamer : NSObject {
         skill.isNew = isNew
         
         emitSetting?("\(expName).Ranks", ranks as String)
-        emitSetting?("\(expName).LearningRate", "\(rate?.rateId)")
-        emitSetting?("\(expName).LearningRateName", "\(rate?.desc)")
+        emitSetting?("\(expName).LearningRate", "\(String(describing: rate?.rateId))")
+        emitSetting?("\(expName).LearningRateName", "\(String(describing: rate?.desc))")
         
         emitExp?(skill)
     }

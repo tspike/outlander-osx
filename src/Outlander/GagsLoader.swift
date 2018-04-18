@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class GagsLoader : NSObject {
     
     class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> GagsLoader {
@@ -74,7 +74,7 @@ class GagsLoader : NSObject {
             
             gags += "#gag {\(pattern)}"
             
-            if className.characters.count > 0 {
+            if className.count > 0 {
                 gags += " {\(className)}"
             }
             gags += "\n"

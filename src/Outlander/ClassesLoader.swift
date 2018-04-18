@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class ClassesLoader : NSObject {
 
     class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> ClassesLoader {

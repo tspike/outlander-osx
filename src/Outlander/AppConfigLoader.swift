@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class AppConfigLoader : NSObject {
 
     class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> AppConfigLoader {

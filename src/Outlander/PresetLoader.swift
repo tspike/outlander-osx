@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class PresetLoader : NSObject {
 
     class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> PresetLoader {
@@ -39,7 +39,7 @@ class PresetLoader : NSObject {
             return
         }
 
-        if data == nil || data?.characters.count == 0 {
+        if data == nil || data?.count == 0 {
             return
         }
 
@@ -92,13 +92,13 @@ class PresetLoader : NSObject {
 
             var color = foreColor
 
-            if backgroundColor.characters.count > 0 {
+            if backgroundColor.count > 0 {
                 color = "\(color),\(backgroundColor)"
             }
 
             presets += "#preset {\(name)} {\(color)}"
 
-            if className.characters.count > 0 {
+            if className.count > 0 {
                 presets += " {\(className)}"
             }
             presets += "\n"

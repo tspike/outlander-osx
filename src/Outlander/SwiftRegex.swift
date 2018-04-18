@@ -56,6 +56,7 @@ open class SwiftRegex: NSObject {
         return nil
     }
     
+    @discardableResult
     open class func saveFile( _ path: String, newContents: NSString, force: Bool = false ) -> Bool {
         let current = force ? nil : loadFile( path, bleat: false )
         
@@ -268,6 +269,7 @@ public func RegexMutable( _ string: NSString ) -> NSMutableString {
 // for switch
 public var lastRegexMatchGroups: [String?]!
 
+@discardableResult
 public func ~= ( left: String, right: String ) -> Bool {
     if let groups = SwiftRegex( target: right as NSString, pattern: left ).groups() {
         lastRegexMatchGroups = groups.map { $0 != regexNoGroup ? $0 : nil }
@@ -277,6 +279,7 @@ public func ~= ( left: String, right: String ) -> Bool {
 }
 
 // for replacements
+@discardableResult
 public func ~= ( left: SwiftRegex, right: String ) -> Bool {
     return left.substituteMatches( {
         (match: NSTextCheckingResult, stop: UnsafeMutablePointer<ObjCBool>) in
@@ -285,6 +288,7 @@ public func ~= ( left: SwiftRegex, right: String ) -> Bool {
     } )
 }
 
+@discardableResult
 public func ~= ( left: SwiftRegex, right: [String] ) -> Bool {
     var matchNumber = 0
     return left.substituteMatches( {
@@ -300,6 +304,7 @@ public func ~= ( left: SwiftRegex, right: [String] ) -> Bool {
     } )
 }
 
+@discardableResult
 public func ~= ( left: SwiftRegex, right: (String) -> String ) -> Bool {
     return left.substituteMatches( {
         (match: NSTextCheckingResult, stop: UnsafeMutablePointer<ObjCBool>) in
@@ -307,6 +312,7 @@ public func ~= ( left: SwiftRegex, right: (String) -> String ) -> Bool {
     } )
 }
 
+@discardableResult
 public func ~= ( left: SwiftRegex, right: ([String]) -> String ) -> Bool {
     return left.substituteMatches( {
         (match: NSTextCheckingResult, stop: UnsafeMutablePointer<ObjCBool>) in

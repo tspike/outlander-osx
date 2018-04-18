@@ -7,7 +7,7 @@
 //
 
 typedef void (^executeBlock) (id context);
-typedef void (^doneBlock) ();
+typedef void (^doneBlock) (void);
 
 @interface ExecuteBlock : NSObject
 

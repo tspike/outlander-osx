@@ -57,8 +57,6 @@
     
     _gameContext = gameContext;
 
-    @weakify(self)
-    
 //    _notifier = [NotifyMessage newInstance];
     /*
     _notifier.messageBlock = ^(TextTag *tag){

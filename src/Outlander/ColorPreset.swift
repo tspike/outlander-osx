@@ -10,10 +10,10 @@ import Foundation
 
 @objc
 open class ColorPreset : NSObject {
-    var name:String
-    var color:String
-    var backgroundColor:String?
-    var presetClass:String?
+    @objc var name:String
+    @objc var color:String
+    @objc var backgroundColor:String?
+    @objc var presetClass:String?
 
     init(_ name:String, _ color:String) {
         self.name = name

@@ -28,7 +28,7 @@ extension GameContext {
         }
     }
 
-    func findRoomInZones(_ name: String, description: String) -> MapNode? {
+    @discardableResult func findRoomInZones(_ name: String, description: String) -> MapNode? {
 
         for (_, zone) in self.maps {
             let (found, room) = findRoomInZone(zone, name: name, description: description)
@@ -57,7 +57,7 @@ extension GameContext {
     }
 }
 
-@objc
+@objcMembers
 class MapperCommandHandler : NSObject, CommandHandler {
     
     class func newInstance() -> MapperCommandHandler {
@@ -69,9 +69,9 @@ class MapperCommandHandler : NSObject, CommandHandler {
     }
     
     func handle(_ command: String, with withContext: GameContext) {
-        let text = command
-            .substring(from: command.characters.index(command.startIndex, offsetBy: 7))
-            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let idx = command.index(command.startIndex, offsetBy: 7)
+        var text: String = String(command[idx..<command.endIndex])
+        text = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         if text == "reset" {
             withContext.resetMap()
@@ -82,7 +82,7 @@ class MapperCommandHandler : NSObject, CommandHandler {
     }
 }
 
-@objc
+@objcMembers
 class MapperGotoCommandHandler : NSObject, CommandHandler {
     
     fileprivate var startDate = Date()
@@ -101,10 +101,9 @@ class MapperGotoCommandHandler : NSObject, CommandHandler {
     }
     
     func handle(_ command: String, with withContext: GameContext) {
-        
-        let area = command
-            .substring(from: command.characters.index(command.startIndex, offsetBy: 5))
-            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let idx = command.index(command.startIndex, offsetBy: 5)
+        var area: String = String(command[idx..<command.endIndex])
+        area = area.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         self.gotoArea(area, context: withContext)
     }
@@ -184,7 +183,7 @@ class MapperGotoCommandHandler : NSObject, CommandHandler {
                 self.sendMessage("Debug: path found in \(diff) seconds")
             }
             
-            if walk.characters.count > 0 {
+            if walk.count > 0 {
             
                 self.sendMessage("Map path: \(walk)")
                 self.autoWalk(moves)

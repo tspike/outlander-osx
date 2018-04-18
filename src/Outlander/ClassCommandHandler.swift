@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class ClassCommandHandler : NSObject, CommandHandler {
     
     fileprivate var relay:CommandRelay
@@ -26,9 +27,9 @@ class ClassCommandHandler : NSObject, CommandHandler {
     
     func handle(_ command: String, with withContext: GameContext) {
 
-        let cmd = command
-            .substring(from: command.characters.index(command.startIndex, offsetBy: 6))
-            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let idx = command.index(command.startIndex, offsetBy: 6)
+        var cmd: String = String(command[idx..<command.endIndex])
+        cmd = cmd.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         if cmd.hasPrefix("clear") {
             withContext.classSettings.clear()

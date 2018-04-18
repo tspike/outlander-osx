@@ -23,7 +23,8 @@ extension String {
     public func trimPrefix(_ prefix:String) -> String {
         
         if(self.hasPrefix(prefix)) {
-            return self.substring(from: self.characters.index(self.startIndex, offsetBy: prefix.characters.count))
+            let idx = self.index(self.startIndex, offsetBy: prefix.count)
+            return String(self[idx..<self.endIndex])
         }
         
         return self
@@ -32,7 +33,8 @@ extension String {
     public func trimSuffix(_ suffix:String) -> String {
         
         if(self.hasSuffix(suffix)) {
-            return self.substring(with: self.startIndex ..< self.characters.index(self.endIndex, offsetBy: -1*suffix.characters.count))
+            let idx = self.index(self.endIndex, offsetBy: -1*suffix.count)
+            return String(self[self.startIndex ..< idx])
         }
         
         return self
@@ -44,7 +46,7 @@ extension String {
     }
     
     subscript (i: Int) -> Character {
-        return self[self.characters.index(self.startIndex, offsetBy: i)]
+        return self[self.index(self.startIndex, offsetBy: i)]
     }
     
     subscript (i: Int) -> String {
@@ -52,13 +54,11 @@ extension String {
     }
     
     subscript (r: Range<Int>) -> String {
-        return substring(with: characters.index(startIndex, offsetBy: r.lowerBound) ..< characters.index(startIndex, offsetBy: r.upperBound))
+        let start = index(startIndex, offsetBy: r.lowerBound)
+        let end = index(startIndex, offsetBy: r.upperBound)
+        return String(self[start..<end])
     }
-    
-    subscript (r: Range<String.Index>) -> String {
-        return substring(with: r)
-    }
-    
+
     func stringByAppendingPathComponent(_ path: String) -> String {
         
         let nsSt = self as NSString
@@ -115,12 +115,13 @@ extension String {
     }
     
     func substringFromIndex(_ index:Int) -> String {
-        return self.substring(from: self.characters.index(self.startIndex, offsetBy: index))
+        let idx = self.index(self.startIndex, offsetBy: index)
+        return String(self[idx..<self.endIndex])
     }
     
     func indexOfCharacter(_ char: Character) -> Int? {
-        if let idx = self.characters.index(of: char) {
-            return self.characters.distance(from: self.startIndex, to: idx)
+        if let idx = self.index(of: char) {
+            return self.distance(from: self.startIndex, to: idx)
         }
         return nil
     }
@@ -132,13 +133,13 @@ extension String {
         let matches = self["((?<!\\\\);)"].matchResults()
         
         var lastIndex = 0
-        let length = self.characters.count
+        let length = self.count
         
         for match in matches {
             let matchLength = match.range.location - lastIndex
-            let start = self.characters.index(self.startIndex, offsetBy: lastIndex)
-            let end = self.characters.index(start, offsetBy: matchLength)
-            var str = self.substring(with: start..<end)
+            let start = self.index(self.startIndex, offsetBy: lastIndex)
+            let end = self.index(start, offsetBy: matchLength)
+            var str = String(self[start..<end])
             str = str.replacingOccurrences(of: "\\;", with: ";")
             results.append(str)
             
@@ -146,9 +147,9 @@ extension String {
         }
         
         if lastIndex < length {
-            let start = self.characters.index(self.startIndex, offsetBy: lastIndex)
-            let end = self.characters.index(start, offsetBy: length - lastIndex)
-            var str = self.substring(with: start ..< end)
+            let start = self.index(self.startIndex, offsetBy: lastIndex)
+            let end = self.index(start, offsetBy: length - lastIndex)
+            var str = String(self[start ..< end])
             str = str.replacingOccurrences(of: "\\;", with: ";")
             results.append(str)
         }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class TriggerHandler : NSObject, ISubscriber {
     
     class func newInstance(_ context:GameContext, relay:CommandRelay) -> TriggerHandler {
@@ -36,7 +36,7 @@ class TriggerHandler : NSObject, ISubscriber {
         if let dict = data as? [String:String] {
             let text = dict["text"] ?? ""
             
-            if text.characters.count > 0 {
+            if text.count > 0 {
                 self.checkTriggers(text, context: self.context)
             }
         }

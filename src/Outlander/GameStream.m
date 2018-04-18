@@ -15,19 +15,18 @@
 #import "GameCommandRelay.h"
 #import "Outlander-Swift.h"
 
-@interface GameStream () {
-    RACSignal *_connection;
-    GameContext *_gameContext;
-    GameCommandRelay *_commandRelay;
-    RACSubject *_mainSubject;
-    StormFrontTokenizer *_tokenizer;
-    StormFrontTagStreamer *_tagStreamer;
-//    ScriptStreamHandler *_scriptStreamHandler;
-    RoomChangeHandler *_roomChangeHandler;
-    TDPUpdateHandler *_tdpUpdateHandler;
-    ExpUpdateHandler *_expUpdateHandler;
-    TriggerHandler *_triggerHandler;
-}
+@interface GameStream () { }
+    @property (nonatomic, strong) RACSignal *connection;
+    @property (nonatomic, strong) GameContext *gameContext;
+    @property (nonatomic, strong) GameCommandRelay *commandRelay;
+    @property (nonatomic, strong) RACSubject *mainSubject;
+    @property (nonatomic, strong) StormFrontTokenizer *tokenizer;
+    @property (nonatomic, strong) StormFrontTagStreamer *tagStreamer;
+//    @property (nonatomic, strong) ScriptStreamHandler *scriptStreamHandler;
+    @property (nonatomic, strong) RoomChangeHandler *roomChangeHandler;
+    @property (nonatomic, strong) TDPUpdateHandler *tdpUpdateHandler;
+    @property (nonatomic, strong) ExpUpdateHandler *expUpdateHandler;
+    @property (nonatomic, strong) TriggerHandler *triggerHandler;
 
 @end
 
@@ -37,68 +36,79 @@
     self = [super init];
     if(self == nil) return nil;
     
-    _gameContext = context;
-    _commandRelay = [[GameCommandRelay alloc] initWith:context.events];
+    self.gameContext = context;
+    self.commandRelay = [[GameCommandRelay alloc] initWith:context.events];
     
-    _gameServer = [[GameServer alloc] initWithContext:context];
-    _gameParser = [[GameParser alloc] initWithContext:context];
-    _tokenizer = [StormFrontTokenizer newInstance];
-    _tagStreamer = [StormFrontTagStreamer newInstance];
-//    _scriptStreamHandler = [ScriptStreamHandler newInstance];
-    _roomChangeHandler = [RoomChangeHandler newInstance:_commandRelay];
-    _tdpUpdateHandler = [TDPUpdateHandler newInstance];
-    _expUpdateHandler = [ExpUpdateHandler newInstance];
-    _triggerHandler = [TriggerHandler newInstance:context relay:_commandRelay];
+    self.gameServer = [[GameServer alloc] initWithContext:context];
+    self.gameParser = [[GameParser alloc] initWithContext:context];
+    self.tokenizer = [StormFrontTokenizer newInstance];
+    self.tagStreamer = [StormFrontTagStreamer newInstance];
+//    self.scriptStreamHandler = [ScriptStreamHandler newInstance];
+    self.roomChangeHandler = [RoomChangeHandler newInstance:self.commandRelay];
+    self.tdpUpdateHandler = [TDPUpdateHandler newInstance];
+    self.expUpdateHandler = [ExpUpdateHandler newInstance];
+    self.triggerHandler = [TriggerHandler newInstance:context relay:self.commandRelay];
     
-    _expUpdateHandler.emitSetting = ^(NSString *key, NSString *value){
-        [_gameContext.globalVars setCacheObject:value forKey:key];
+    __weak GameStream *weakSelf = self;
+    self.expUpdateHandler.emitSetting = ^(NSString *key, NSString *value){
+        GameStream *strongSelf = weakSelf;
+        [strongSelf.gameContext.globalVars setCacheObject:value forKey:key];
     };
     
-    _expUpdateHandler.emitExp = ^(SkillExp *exp) {
-        [_exp sendNext:exp];
+    self.expUpdateHandler.emitExp = ^(SkillExp *exp) {
+        GameStream *strongSelf = weakSelf;
+        [strongSelf.exp sendNext:exp];
     };
     
-    _tagStreamer.emitSetting = ^(NSString *key, NSString *value){
-        [_gameContext.globalVars setCacheObject:value forKey:key];
+    self.tagStreamer.emitSetting = ^(NSString *key, NSString *value){
+        GameStream *strongSelf = weakSelf;
+        [strongSelf.gameContext.globalVars setCacheObject:value forKey:key];
     };
     
-    _tagStreamer.emitExp = ^(SkillExp *exp) {
-        [_exp sendNext:exp];
+    self.tagStreamer.emitExp = ^(SkillExp *exp) {
+        GameStream *strongSelf = weakSelf;
+        [strongSelf.exp sendNext:exp];
     };
     
-    _tagStreamer.emitRoundtime = ^(Roundtime *rt) {
-        [_roundtime sendNext:rt];
+    self.tagStreamer.emitRoundtime = ^(Roundtime *rt) {
+        GameStream *strongSelf = weakSelf;
+        [strongSelf.roundtime sendNext:rt];
     };
     
-    _tagStreamer.emitRoom = ^{
-        [_gameParser.room sendNext:@""];
+    self.tagStreamer.emitRoom = ^{
+        GameStream *strongSelf = weakSelf;
+        [strongSelf.gameParser.room sendNext:@""];
     };
     
-    _tagStreamer.emitVitals = ^(Vitals *vital) {
-        [_vitals sendNext:vital];
+    self.tagStreamer.emitVitals = ^(Vitals *vital) {
+        GameStream *strongSelf = weakSelf;
+        [strongSelf.vitals sendNext:vital];
     };
     
-    _tagStreamer.emitSpell = ^(NSString *spell) {
-        [_gameParser.spell sendNext:spell];
+    self.tagStreamer.emitSpell = ^(NSString *spell) {
+        GameStream *strongSelf = weakSelf;
+        [strongSelf.gameParser.spell sendNext:spell];
     };
     
-    _tagStreamer.emitClearStream = ^(NSString *window) {
+    self.tagStreamer.emitClearStream = ^(NSString *window) {
+        GameStream *strongSelf = weakSelf;
         CommandContext *ctx = [[CommandContext alloc] init];
         ctx.command = [NSString stringWithFormat:@"#window clear %@", window];
         
-        [_commandRelay sendCommand:ctx];
+        [strongSelf.commandRelay sendCommand:ctx];
     };
     
-    _tagStreamer.emitWindow = ^(NSString *window, NSString *title, NSString *closedTarget) {
+    self.tagStreamer.emitWindow = ^(NSString *window, NSString *title, NSString *closedTarget) {
+        GameStream *strongSelf = weakSelf;
         NSDictionary *win = @{
             @"name" : window,
             @"title" : title != nil ? title : [NSNull null],
             @"closedTarget" : closedTarget != nil ? closedTarget : [NSNull null]
         };
-        [_gameContext.events publish:@"OL:window:ensure" data:win];
+        [strongSelf.gameContext.events publish:@"OL:window:ensure" data:win];
     };
 
-    _tagStreamer.emitLaunchUrl = ^(NSString *url) {
+    self.tagStreamer.emitLaunchUrl = ^(NSString *url) {
 
         if ([url hasPrefix:@"/forums"]) {
             url = [NSString stringWithFormat:@"http://play.net%@", url];
@@ -108,30 +118,30 @@
         [[NSWorkspace sharedWorkspace] openURL:[req URL]];
     };
     
-    _vitals = _gameParser.vitals;
-    _indicators = _gameParser.indicators;
-    _directions = _gameParser.directions;
+    self.vitals = self.gameParser.vitals;
+    self.indicators = self.gameParser.indicators;
+    self.directions = self.gameParser.directions;
     
-    _room = [_gameParser.room multicast:[RACSubject subject]];
-    [_room connect];
-    _spell = [_gameParser.spell multicast:[RACSubject subject]];
-    [_spell connect];
-    _exp = _gameParser.exp;
-    _thoughts = _gameParser.thoughts;
-    _chatter = _gameParser.chatter;
-    _arrivals = _gameParser.arrivals;
-    _deaths = _gameParser.deaths;
-    _familiar = _gameParser.familiar;
-    _log = _gameParser.log;
-    _roundtime = _gameParser.roundtime;
+    self.room = [self.gameParser.room multicast:[RACSubject subject]];
+    [self.room connect];
+    self.spell = [self.gameParser.spell multicast:[RACSubject subject]];
+    [self.spell connect];
+    self.exp = self.gameParser.exp;
+    self.thoughts = self.gameParser.thoughts;
+    self.chatter = self.gameParser.chatter;
+    self.arrivals = self.gameParser.arrivals;
+    self.deaths = self.gameParser.deaths;
+    self.familiar = self.gameParser.familiar;
+    self.log = self.gameParser.log;
+    self.roundtime = self.gameParser.roundtime;
     
-    _connected = [RACSubject subject];
-    _mainSubject = [RACSubject subject];
-    _subject = [_mainSubject multicast:[RACSubject subject]];
-    [_subject connect];
+    self.connected = [RACSubject subject];
+    self.mainSubject = [RACSubject subject];
+    self.subject = [self.mainSubject multicast:[RACSubject subject]];
+    [self.subject connect];
     
-    [_gameServer.connected subscribeNext:^(id x) {
-        id<RACSubscriber> sub = (id<RACSubscriber>)_connected;
+    [self.gameServer.connected subscribeNext:^(id x) {
+        id<RACSubscriber> sub = (id<RACSubscriber>)self.connected;
         [sub sendNext:x];
     }];
     
@@ -139,30 +149,30 @@
 }
 
 -(void) publish:(id)item {
-    [_mainSubject sendNext:item];
+    [self.mainSubject sendNext:item];
 }
 
 -(void) complete {
-    [_gameServer disconnect];
-    [_triggerHandler unsubscribe];
-    [_mainSubject sendCompleted];
+    [self.gameServer disconnect];
+    [self.triggerHandler unsubscribe];
+    [self.mainSubject sendCompleted];
 }
 
 -(void) unsubscribe {
-    [_triggerHandler unsubscribe];
+    [self.triggerHandler unsubscribe];
 }
 
 -(void) error:(NSError *)error {
-    [_mainSubject sendError:error];
+    [self.mainSubject sendError:error];
 }
 
 -(void) sendCommand:(NSString *)command {
-    [_gameServer sendCommand:command];
+    [self.gameServer sendCommand:command];
 }
 
 -(RACMulticastConnection *) connect:(GameConnection *)connection {
     
-    [[_gameServer connect:connection.key
+    [[self.gameServer connect:connection.key
                   toHost:connection.host
                   onPort:connection.port]
      subscribeNext:^(NSString *rawXml) {
@@ -171,27 +181,27 @@
          rawTag.targetWindow = @"raw";
          
          NSArray *rawArray = [NSArray arrayWithObjects:rawTag, nil];
-         [_mainSubject sendNext:rawArray];
+         [self.mainSubject sendNext:rawArray];
 
-         NSArray *nodes = [_tokenizer tokenize:rawXml];
-         NSArray *tags = [_tagStreamer stream:nodes];
+         NSArray *nodes = [self.tokenizer tokenize:rawXml];
+         NSArray *tags = [self.tagStreamer stream:nodes];
          
-         [_mainSubject sendNext:tags];
+         [self.mainSubject sendNext:tags];
          
          NSString *rawText = [self textForTagList:tags];
 
-         [_triggerHandler handle:nodes text:rawText context:_gameContext];
-         [_roomChangeHandler handle:nodes text:rawText context:_gameContext];
-         [_tdpUpdateHandler handle:nodes text:rawText context:_gameContext];
-         [_expUpdateHandler handle:nodes text:rawText context:_gameContext];
-//         [_scriptStreamHandler handle:nodes text:rawText context:_gameContext];
+         [self.triggerHandler handle:nodes text:rawText context:self.gameContext];
+         [self.roomChangeHandler handle:nodes text:rawText context:self.gameContext];
+         [self.tdpUpdateHandler handle:nodes text:rawText context:self.gameContext];
+         [self.expUpdateHandler handle:nodes text:rawText context:self.gameContext];
+//         [self.scriptStreamHandler handle:nodes text:rawText context:self.gameContext];
          
      } completed:^{
          [self unsubscribe];
-         [_mainSubject sendCompleted];
+         [self.mainSubject sendCompleted];
      }];
     
-    return _subject;
+    return self.subject;
 }
 
 -(NSString *)textForTagList:(NSArray *)tags {

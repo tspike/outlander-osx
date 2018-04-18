@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class ParseCommandHandler : NSObject, CommandHandler {
     
     class func newInstance() -> ParseCommandHandler {
@@ -20,9 +20,9 @@ class ParseCommandHandler : NSObject, CommandHandler {
     }
     
     func handle(_ command: String, with withContext: GameContext) {
-        let text = command
-            .substring(from: command.characters.index(command.startIndex, offsetBy: 6))
-            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let idx = command.index(command.startIndex, offsetBy: 6)
+        var text: String = String(command[idx..<command.endIndex])
+        text = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         
         let dict = ["text": text]
         

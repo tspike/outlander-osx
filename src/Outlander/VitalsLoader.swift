@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class VitalsLoader : NSObject {
     
     class func newInstance(_ context:GameContext, fileSystem:FileSystem) -> VitalsLoader {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class PresetCommandHandler : NSObject, CommandHandler {
     class func newInstance() -> PresetCommandHandler {
         return PresetCommandHandler()
@@ -20,9 +20,9 @@ class PresetCommandHandler : NSObject, CommandHandler {
 
     func handle(_ command: String, with withContext: GameContext) {
 
-        let text = command
-            .substring(from: command.characters.index(command.startIndex, offsetBy: 7))
-            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let idx = command.index(command.startIndex, offsetBy: 7)
+        var text: String = String(command[idx..<command.endIndex])
+        text = text.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         let options = text.components(separatedBy: " ")
 
@@ -50,7 +50,7 @@ class PresetCommandHandler : NSObject, CommandHandler {
 
         if let found = context.presets[name] {
             found.color = foreColor
-            if backgroundColor.characters.count > 0 {
+            if backgroundColor.count > 0 {
                 found.backgroundColor = backgroundColor
             }
         } else {

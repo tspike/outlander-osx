@@ -67,7 +67,7 @@ public final class MapZone : NSObject {
     
     func roomWithId(_ id:String) -> MapNode? {
         
-        if id.characters.count == 0 {
+        if id.count == 0 {
             return nil
         }
         
@@ -84,7 +84,7 @@ public final class MapZone : NSObject {
 //            trimmed = description.substringToIndex(description.startIndex.advancedBy(50))
 //        }
 
-        let filtered = last?.arcs.filter { $0.destination.characters.count > 0 }
+        let filtered = last?.arcs.filter { $0.destination.count > 0 }
  
         for arc in filtered! {
             

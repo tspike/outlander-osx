@@ -163,7 +163,7 @@ static const CGFloat MASButtonFontSize = 11;
     [self setNeedsDisplay:YES];
     
     // Give VoiceOver users feedback on the result. Requires at least 10.9 to run.
-    if (_recording == NO && (&NSAccessibilityPriorityKey != NULL)) {
+    if (_recording == NO) {
         NSString* msg = _shortcutValue ?
         NSLocalizedString(@"Shortcut set", @"VoiceOver: Shortcut set") :
         NSLocalizedString(@"Shortcut cleared", @"VoiceOver: Shortcut cleared");
@@ -382,10 +382,12 @@ void *kUserDataHint = &kUserDataHint;
 - (void)resetToolTips
 {
     if (_shortcutToolTipTag) {
-        [self removeToolTip:_shortcutToolTipTag], _shortcutToolTipTag = 0;
+        [self removeToolTip:_shortcutToolTipTag];
+        _shortcutToolTipTag = 0;
     }
     if (_hintToolTipTag) {
-        [self removeToolTip:_hintToolTipTag], _hintToolTipTag = 0;
+        [self removeToolTip:_hintToolTipTag];
+        _hintToolTipTag = 0;
     }
     
     if ((self.shortcutValue == nil) || self.recording || !self.enabled) return;

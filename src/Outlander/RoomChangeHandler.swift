@@ -13,7 +13,7 @@ public protocol NodeHandler {
     func handle(_ nodes:[Node], text:String, context:GameContext)
 }
 
-@objc
+@objcMembers
 class RoomChangeHandler : NSObject, NodeHandler {
     
     var relay:CommandRelay
@@ -90,7 +90,7 @@ class RoomChangeHandler : NSObject, NodeHandler {
         
         let exits = room.nonCardinalExists().map { $0.move }.joined(separator: ", ")
         
-        if exits.characters.count > 0 {
+        if exits.count > 0 {
         
             tag = TextTag()
             tag.text = "Mapped exits: \(exits)\n"

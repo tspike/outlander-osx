@@ -8,6 +8,7 @@
 
 #import "CommandProcessor.h"
 #import "VariableReplacer.h"
+#import "Outlander-Swift.h"
 
 @class GameContext;
 @protocol ISubscriber;

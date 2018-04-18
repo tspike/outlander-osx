@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class WindowCommandHandler : NSObject, CommandHandler {
     
     class func newInstance() -> WindowCommandHandler {
@@ -22,10 +22,9 @@ class WindowCommandHandler : NSObject, CommandHandler {
     }
     
     func handle(_ command: String, with withContext: GameContext) {
-        
-        let commands = command
-            .substring(from: command.characters.index(command.startIndex, offsetBy: 7))
-            .trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+        let idx = command.index(command.startIndex, offsetBy: 7)
+        var commands:String = String(command[idx..<command.endIndex])
+        commands = commands.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
 
         if commands.hasPrefix("reload") {
             let loader = WindowDataService()

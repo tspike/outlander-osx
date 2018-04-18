@@ -15,7 +15,7 @@ import Foundation
 @objc open class ParseContext : NSObject {
     var nodes = [Node]()
     var consumedCharacters : String {
-        let substring: String = __sourceString[__startIndex..<__currentIndex]
+        let substring: String = String(__sourceString[__startIndex..<__currentIndex])
         return substring
     }
     
@@ -28,7 +28,7 @@ import Foundation
     
     var scanAdvanced = false
     
-    fileprivate var __marker : IndexingIterator<String.CharacterView> {
+    fileprivate var __marker : IndexingIterator<String> {
         didSet {
             scanAdvanced = true
         }
@@ -52,11 +52,11 @@ import Foundation
         __startIndex = withMarker
         __currentIndex = __startIndex
         __sourceString = forString
-        sourceLength = __sourceString.characters.count
+        sourceLength = __sourceString.count
         
         current = eot
         
-        __marker = __sourceString.characters.makeIterator()
+        __marker = __sourceString.makeIterator()
         if let first = __marker.next() {
             current = first
             next = __marker.next()
@@ -125,7 +125,7 @@ import Foundation
     }
 }
 
-@objc open class StormFrontTokenizer : NSObject {
+@objcMembers open class StormFrontTokenizer : NSObject {
     
     class func newInstance() -> StormFrontTokenizer {
         return StormFrontTokenizer()
@@ -157,7 +157,7 @@ import Foundation
     }
     
     fileprivate func pushContext(_ context:ParseContext, range:Range<String.Index>) -> [Node] {
-        let newStr: String = context.__sourceString[range]
+        let newStr: String = String(context.__sourceString[range])
         let newContext = ParseContext(atPosition: 0, withMarker:newStr.startIndex, forString:newStr)
         return scanContext(newContext)
     }
@@ -168,7 +168,9 @@ import Foundation
             && context.currentPosition == context.sourceLength - 1
             && context.current !=  "\r\n" {
             let length = context.sourceLength - 1
-            let data = context.__sourceString.substring(from: context.__sourceString.characters.index(context.__sourceString.startIndex, offsetBy: length))
+            let str = context.__sourceString
+            let idx = str.index(str.startIndex, offsetBy: length)
+            let data: String = String(str[idx..<str.endIndex])
             let token = Node("text", data, nil)
             context.nodes.append(token)
             context.advance()
@@ -180,7 +182,7 @@ import Foundation
                 return char == "<"
             })
             
-            if context.consumedCharacters.characters.count > 0 {
+            if context.consumedCharacters.count > 0 {
                 let token = Node("text", context.consumedCharacters, nil)
                 context.nodes.append(token)
             }

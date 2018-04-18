@@ -8,7 +8,7 @@
 
 #import "VarCommandHandler.h"
 #import "NSString+Categories.h"
-#import "OUtlander-Swift.h"
+#import "Outlander-Swift.h"
 
 @implementation VarCommandHandler
 

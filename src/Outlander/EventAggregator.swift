@@ -13,7 +13,7 @@ public protocol ISubscriber {
     func handle(_ token:String, data:Dictionary<String, AnyObject>)
 }
 
-@objc
+@objcMembers
 open class EventAggregator : NSObject {
     
     fileprivate var handlers:[EventHandler]
@@ -22,7 +22,7 @@ open class EventAggregator : NSObject {
         handlers = []
     }
     
-    open func subscribe(_ subscriber:ISubscriber, token:String) -> String {
+    @discardableResult open func subscribe(_ subscriber:ISubscriber, token:String) -> String {
         
         let id = UUID().uuidString
         

@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 class Gag : NSObject {
     var pattern:String?
     var patternClass:String?

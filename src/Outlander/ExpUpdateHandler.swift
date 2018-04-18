@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class ExpUpdateHandler : NSObject {
     
     class func newInstance() -> ExpUpdateHandler {

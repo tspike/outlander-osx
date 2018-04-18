@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc
+@objcMembers
 class TestCommandHandler : NSObject, CommandHandler {
     
     class func newInstance() -> TestCommandHandler {

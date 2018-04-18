@@ -8,6 +8,7 @@
 
 import Foundation
 
+@objcMembers
 open class DirectionsView : NSView {
     
     var dir = NSImage(named: NSImage.Name(rawValue: "Directions"))

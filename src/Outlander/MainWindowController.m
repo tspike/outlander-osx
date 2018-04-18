@@ -168,12 +168,7 @@
     
     [self.window setTitle:[NSString stringWithFormat:@"Outlander %@ Alpha", version]];
     
-    @weakify(self);
-    
     [[_gameContext.globalVars.changed throttle:0.5]subscribeNext:^(id x) {
-        
-        @strongify(self);
-       
         NSString *charInfo = @"";
         NSString *game = [_gameContext.globalVars cacheObjectForKey:@"game"];
         NSString *character = [_gameContext.globalVars cacheObjectForKey:@"charactername"];
